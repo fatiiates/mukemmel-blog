@@ -1,0 +1,165 @@
+
+/* TAGS */
+
+*{
+  font-size: 25px;
+  font-family: Raleway-Regular;
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+}
+
+header{
+  background-color: rgba(255,255,255,.9);
+  font-size: 20px;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  display: flex;
+  color: white;
+}
+header p {
+
+}
+
+/* CLASSES */
+
+.forward {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+}
+.forward p,font {
+  font-size: 100px;
+  color: white;
+}
+.forward p a {
+  background-color: transparent;
+  border: 1px solid white;
+  padding: 15px 25px;
+  color :#f54a08;
+  transition: .5s
+
+}
+.forward p a:hover {
+  border: 1px solid #f54a08;
+  color :white;
+  background-color: #f54a08;
+}
+
+.fixed {
+  width: 100%;
+  height: auto;
+  bottom: 5%;
+  background-color: white;
+  position: fixed;
+  z-index: 999;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  padding: 20px;
+}
+.fixed a {
+  color: black;
+  font-size: 25px;
+  width: 100%;
+}
+.fixed .email,.phone,.social {
+  width: 33.333333%;
+  color: black;
+  font-size: 25px;
+
+}
+.fixed .social .social-icons {
+  display: inline-flex;
+  list-style: none;
+  font-size: 15px;
+}
+.fixed .social .social-icons li {
+    vertical-align: top;
+    float: right;
+    list-style: none;
+}
+.fixed .social .social-icons a {
+    color: #fff;
+    text-decoration: none;
+    height: 30px;
+
+}
+.fixed .social .social-icons a i {
+    font-size: 18px;
+
+}
+.fixed .social .social-icons .social-icon {
+    color: #fff;
+    text-align: center;
+}
+.fa-facebook {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #322f30;
+}
+.fa-facebook:hover {
+    background-color: #3d5b99;
+}
+.fa-twitter {
+    padding:10px 12px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #322f30;
+}
+.fa-twitter:hover {
+    background-color: #00aced;
+}
+.fa-youtube {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #322f30;
+}
+.fa-youtube:hover {
+    background-color: #e64a41;
+}
+.fa-google-plus {
+    padding:10px 9px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #322f30;
+}
+.fa-google-plus:hover {
+    background-color: #e25714;
+}
+
+
+/* IDENTIFIERS */
+/* fonts */
+
+@font-face {
+  font-family: Raleway-Regular;
+  src:url('../fonts/Raleway-Regular.ttf');
+}
+@font-face {
+  font-family: Raleway-Bold;
+  src:url('../fonts/Raleway-Bold.ttf');
+}

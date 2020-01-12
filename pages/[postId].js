@@ -4,6 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
+
 const BlogPost = ({ post }) => (
   <div className="container">
     <Head>
@@ -14,16 +15,16 @@ const BlogPost = ({ post }) => (
     <div className="hero">
       <h1 className="hero-title">Selman Kahya</h1>
       <div className="hero-social-links">
-        <Link href="https://medium.com/@selmankahya">
+        <Link href="//www.medium.com/@selmankahya">
           <a className="social-link">Medium</a>
         </Link>
-        <Link href="https://www.twitter.com/selmankahyax">
+        <Link href="//www.twitter.com/selmankahyax">
           <a className="social-link">Twitter</a>
         </Link>
-        <Link href="https://www.linkedin.com/in/selmankahya">
+        <Link href="//www.linkedin.com/in/selmankahya">
           <a className="social-link">LinkedIn</a>
         </Link>
-        <Link href="https://www.instagram.com/selmankahyax/?hl=en">
+        <Link href="//www.instagram.com/selmankahyax/?hl=en">
           <a className="social-link">Instagram</a>
         </Link>
       </div>
@@ -76,7 +77,8 @@ const BlogPost = ({ post }) => (
 
 BlogPost.getInitialProps = async ({ req, query }) => {
   // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
-  const res = await fetch('http://mukemmellblog.herokuapp.com/api/post/${query.postId}');
+  const queryPost=query.postId;
+  const res = await fetch('http://localhost:3000/api/post/'+queryPost);
   const json = await res.json();
   return { post: json.post };
 };

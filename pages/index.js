@@ -1,87 +1,50 @@
 import React from "react";
 import fetch from "isomorphic-unfetch";
-import Head from "next/head";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import Layout from "../components/layout";
+import Head from "../components/header";
+import MYApp from "../components/globe";
 
 const Home = ({ posts }) => (
-  <div className="container">
-    <Head>
-      <title>Home</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+  <Layout>
+  <Head/>
+  <MYApp/>
+  <script src="static/js/three.r92.min.js"></script>
+  <script src="static/js/vanta.birds.min.js"></script>
+  <div className="forward">
+    <p>
+      <font style={{ color: "#f54a08" }} >Merhaba;</font> Ben Fatih
+      <br/>
+      <Link href="/blog" >
+          <a>Bloga ilerle</a>
+      </Link>
+    </p>
 
-    <div className="hero">
-      <h1 className="hero-title">Selman Kahya</h1>
-      <div className="hero-social-links">
-        <Link href="https://medium.com/@selmankahya">
-          <a className="social-link">Medium</a>
-        </Link>
-        <Link href="https://www.twitter.com/selmankahyax">
-          <a className="social-link">Twitter</a>
-        </Link>
-        <Link href="https://www.linkedin.com/in/selmankahya">
-          <a className="social-link">LinkedIn</a>
-        </Link>
-        <Link href="https://www.instagram.com/selmankahyax/?hl=en">
-          <a className="social-link">Instagram</a>
-        </Link>
-      </div>
-    </div>
-
-    {posts.map(post => (
-      <div className="blog">
-        <h2 className="blog-title">
-          <Link href={post.slug}>
-            <a className="blog-title-link">{post.title}</a>
-          </Link>
-        </h2>
-        <div className="blog-text">
-          <ReactMarkdown source={post.details} />
-        </div>
-        <div className="blog-date">{post.date}</div>
-      </div>
-    ))}
-
-    <style jsx>{`
-      .container {
-        max-width: 650px;
-        width: 100%;
-        margin: 0 auto;
-      }
-
-      .hero {
-        text-align: center;
-        margin: 96px 0;
-      }
-
-      .social-link {
-        margin-right: 8px;
-      }
-
-      .hero-title {
-        font-size: 48px;
-      }
-
-      .blog-date {
-        text-align: right;
-        color: #cccccc;
-        margin: 12px 0 48px 0;
-      }
-
-      a {
-        color: #35459e;
-        text-decoration: none;
-      }
-    `}</style>
   </div>
+  <div className="fixed"  >
+    <div className="phone" >
+      <Link href="//phone:+905444735349" >
+        <a>+90 544 473 5349</a>
+      </Link>
+    </div>
+    <div className="email" >
+      <Link href="//mailto:fatiiates@gmail.com" >
+        <a>fatiiates@gmail.com</a>
+      </Link>
+    </div>
+    <div className="social" >
+      <ul className="social-icons">
+          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fa fa-google-plus"></i></a></li>
+          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fa fa-youtube"></i></a></li>
+          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fa fa-twitter"></i></a></li>
+          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fa fa-facebook"></i></a></li>
+      </ul>
+    </div>
+  </div>
+  </Layout>
+
 );
 
-Home.getInitialProps = async ({ req }) => {
-  // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
-  const res = await fetch("http://mukemmellblog.herokuapp.com/api/posts");
-  const json = await res.json();
-  return { posts: json.posts };
-};
 
 export default Home;
