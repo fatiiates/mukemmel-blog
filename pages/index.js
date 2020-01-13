@@ -18,7 +18,7 @@ const Home = ({ posts }) => (
   <script src="static/js/vanta.birds.min.js"></script>
   <div className="forward">
     <p>
-      <font style={{ color: "yellow" }} >Merhaba;</font> Ben Fatih
+      <font style={{ color: "#FF3D17" }} >Merhaba;</font> Ben Fatih
       <br/>
       <Link href="/blog" >
           <a className="hvr-bounce-to-right" >Bloğa ilerle {process.env.customKey}</a>
@@ -28,7 +28,7 @@ const Home = ({ posts }) => (
   </div>
   <div className="fixed"  >
     <div className="phone" >
-      <Link href="//phone:+905444735349" >
+      <Link href="//phone:+905444735349">
         <a>+90 544 473 5349</a>
       </Link>
     </div>
