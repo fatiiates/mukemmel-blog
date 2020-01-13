@@ -6,18 +6,22 @@ import Layout from "../components/layout";
 import Head from "../components/header";
 import MYApp from "../components/globe";
 
+
+
+
 const Home = ({ posts }) => (
   <Layout>
   <Head/>
   <MYApp/>
+
   <script src="static/js/three.r92.min.js"></script>
   <script src="static/js/vanta.birds.min.js"></script>
   <div className="forward">
     <p>
-      <font style={{ color: "#f54a08" }} >Merhaba;</font> Ben Fatih
+      <font style={{ color: "yellow" }} >Merhaba;</font> Ben Fatih
       <br/>
       <Link href="/blog" >
-          <a>Bloga ilerle</a>
+          <a className="hvr-bounce-to-right" >Bloğa ilerle {process.env.customKey}</a>
       </Link>
     </p>
 
@@ -30,7 +34,7 @@ const Home = ({ posts }) => (
     </div>
     <div className="email" >
       <Link href="//mailto:fatiiates@gmail.com" >
-        <a>fatiiates@gmail.com</a>
+        <a>fatiiates@gmail.com </a>
       </Link>
     </div>
     <div className="social" >
@@ -45,6 +49,22 @@ const Home = ({ posts }) => (
   </Layout>
 
 );
+
+
+
+/*Home.getInitialProps = async ({ req }) => {
+  // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
+  const res;
+  if(process.env.NODE_ENV === "development")
+    res= await fetch("http://localhost:3000/api/posts");
+  else if (process.env.NODE_ENV === "production")
+    res= await fetch("http://mukemmellblog.herokuapp.com/api/posts");
+
+  const json = await res.json();
+  console.log(process.env.NODE_ENV);
+  return { posts: json.posts };
+
+};*/
 
 
 export default Home;

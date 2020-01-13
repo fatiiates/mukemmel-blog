@@ -8,6 +8,7 @@ const Header = () => (
       <link rel="icon" href="/static/img/ico/favicon.ico" />
       <link href="/static/css/site.css" rel="stylesheet" />
       <link href="/static/fonts/font-awesome.min.css" rel="stylesheet" />
+      <link href="/static/css/animate.css" rel="stylesheet" />
 
     </Head>
 

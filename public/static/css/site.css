@@ -42,15 +42,19 @@ header p {
 .forward p a {
   background-color: transparent;
   border: 1px solid white;
-  padding: 15px 25px;
-  color :#f54a08;
-  transition: .5s
+  padding: 15px 30px;
+  color :white;
+  transition: .5s;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  font-weight:bold;
 
 }
 .forward p a:hover {
-  border: 1px solid #f54a08;
+  border-color: red;
   color :white;
-  background-color: #f54a08;
 }
 
 .fixed {
@@ -99,7 +103,7 @@ header p {
 
 }
 .fixed .social .social-icons .social-icon {
-    color: #fff;
+    color: black;
     text-align: center;
 }
 .fa-facebook {
@@ -109,10 +113,11 @@ header p {
     -moz-transition:.5s;
     -webkit-transition:.5s;
     transition: .5s;
-    background-color: #322f30;
+    background-color: #fff;
 }
 .fa-facebook:hover {
     background-color: #3d5b99;
+    color: #fff;
 }
 .fa-twitter {
     padding:10px 12px;
@@ -121,10 +126,11 @@ header p {
     -moz-transition:.5s;
     -webkit-transition:.5s;
     transition: .5s;
-    background-color: #322f30;
+    background-color: #fff;
 }
 .fa-twitter:hover {
     background-color: #00aced;
+    color: #fff;
 }
 .fa-youtube {
     padding:10px 14px;
@@ -133,10 +139,11 @@ header p {
     -moz-transition:.5s;
     -webkit-transition:.5s;
     transition: .5s;
-    background-color: #322f30;
+    background-color: #fff;
 }
 .fa-youtube:hover {
     background-color: #e64a41;
+    color: #fff;
 }
 .fa-google-plus {
     padding:10px 9px;
@@ -145,10 +152,11 @@ header p {
     -moz-transition:.5s;
     -webkit-transition:.5s;
     transition: .5s;
-    background-color: #322f30;
+    background-color: #fff;
 }
 .fa-google-plus:hover {
     background-color: #e25714;
+    color: #fff;
 }
 
 
