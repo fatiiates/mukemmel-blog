@@ -3,15 +3,18 @@ import fetch from "isomorphic-unfetch";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import Layout from "../../components/layout";
-import Head from "../../components/header";
-
+import Head from "../../components/head";
+import Header from "../../components/header";
 
 
 
 const Contact = ({posts}) => (
+
   <Layout>
-  <Head>
-  </Head>
+  <Head/>
+  <Header>
+    <input id="gradient" className="toggle" type="checkbox" defaultChecked/>
+  </Header>
   <style jsx global>{`
 
       body {
@@ -26,6 +29,12 @@ const Contact = ({posts}) => (
         display: block;
 
       }
+      .headerBottom {
+        background-color:white!important;
+      }
+      .container {
+        display:flex;
+      }
       .builds {
         height: 100%;
         left: 0;
@@ -33,37 +42,16 @@ const Contact = ({posts}) => (
         top: 0;
         width: 100%;
       }
-      .builds #deyim,font {
-        text-align:center;
-        font-family:"Vladimir Script";
-        margin-top:100px;
-        font-size:70px;
-        background:white;
-        color:black;
-      }
-      .builds #deyim font {
-        margin:0px;
-      }
-      .builds #deyim font.hvr-trim {
-        vertical-align:baseline;
-
-      }
-      .builds #deyim #mevla.hvr-trim:before {
-        opacity:1;
-        border-bottom:4px solid green;
-      }
-      .builds #deyim #bela.hvr-trim:before {
-        opacity:1;
-        border-bottom:4px solid #a23535;
-      }
-
       .builds .builds-content {
+        margin-top:100px;
         width:50%;
         height: 50%;
         background:white;
         position:absolute;
-        margin-top:-100px;
         box-shadow: 0px 0px 10px 10px rgba(0,0,0,.3);
+        -o-box-shadow: 0px 0px 10px 10px rgba(0,0,0,.3);
+        -moz-box-shadow: 0px 0px 10px 10px rgba(0,0,0,.3);
+        -webkit-box-shadow: 0px 0px 10px 10px rgba(0,0,0,.3);
       }
       .builds .builds-content .builds-content-top {
         width:100%;
@@ -104,6 +92,7 @@ const Contact = ({posts}) => (
         vertical-align:middle;
         text-align:center;
         justify-content:center;
+        position:absolute;
       }
       .builds .builds-content .builds-content-bottom .builds-description {
         font-family:Raleway-Regular;
@@ -115,6 +104,9 @@ const Contact = ({posts}) => (
       /* SPECIAL CSS */
       .active:before {
         opacity:1;
+      }
+      .passive {
+        opacity:0;
       }
       .fa-social {
         padding: 20px;
@@ -155,39 +147,33 @@ const Contact = ({posts}) => (
         color: white;
       }
 
-  `}</style>
 
+
+  `}</style>
   <div className="builds">
 
-    <p id="deyim" >"Arayan <font id="mevla" className="hvr-trim">mevlasını</font> da bulur <font id="bela" className="hvr-trim" >belasını</font> da"</p>
-    <div className="container">
+    <div className="container" style={{background:"transparent"}}>
       <div className="builds-content" >
         <div className="builds-content-top">
-          <Link  >
             <a id="e-mail" className="hvr-trim active" >
               <div className="field" >
                 <p><i className="fa fa-envelope"></i>E-posta</p>
               </div>
             </a>
-          </Link>
-          <Link >
             <a id="phone" className="hvr-trim" >
               <div className="field" >
                 <p><i className="fa fa-phone"></i>Telefon</p>
               </div>
             </a>
-          </Link>
-          <Link  >
             <a id="social" className="hvr-trim" >
               <div className="field" style={{borderRight:"none"}} >
                 <p><i className="fa fa-thumbs-up"></i>Sosyal Medya</p>
               </div>
             </a>
-          </Link>
         </div>
         {posts.map(post =>  (
 
-          <div htmlFor={post.slug} key={post.id} className="builds-content-bottom">
+          <div htmlFor={post.slug} key={post.id} className={post.slug == "e-mail" ? "builds-content-bottom" : "builds-content-bottom passive" } >
           {(post.title).map(nestedPost => (
             post.slug == "social" ? <a key={nestedPost.id} className={"fa fa-social "+"fa-"+nestedPost.content.split('.')[1]} ></a> : <p key={nestedPost.id} className="builds-description" >{nestedPost.content}</p>
 

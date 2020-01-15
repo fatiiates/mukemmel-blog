@@ -3,7 +3,7 @@ import fetch from "isomorphic-unfetch";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import Layout from "../components/layout";
-import Head from "../components/header";
+import Head from "../components/head";
 import MYApp from "../components/globe";
 
 

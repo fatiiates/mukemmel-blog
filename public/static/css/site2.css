@@ -1,0 +1,284 @@
+
+/* TAGS */
+
+*{
+  font-size: 25px;
+  font-family: Raleway-Regular;
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  word-break: normal;
+  word-wrap: break-word;
+}
+
+
+header{
+  font-size: 20px;
+  width: 100%;
+  height: 170px;
+  text-align: center;
+  color: white;
+  z-index: 1;
+}
+header .headerTop {
+  width: 70%;
+  background-color: transparent;
+  color:black;
+  float: none;
+  height: 40px;
+  display: flex;
+  margin:0 15% 0 15%;
+
+}
+header .headerTop div {
+  width: 50%;
+  height: 40px;
+}
+header .headerTop .welcome {
+  color: white;
+  font-size:25px;
+  text-align: start;
+  display: flex;
+  align-items: center;
+}
+header .headerBottom {
+  width: 100%;
+  color:black;
+  float: left;
+  height: 130px;
+  display: flex;
+  box-shadow: 10px 10px 10px rgba(0,0,0,.2);
+  min-height: 70px;
+    align-items: center;
+    background-color: rgba(255,255,255,.9);
+
+}
+header .headerBottom div {
+  width: 50%;
+  height: 100px;
+  align-items: center;
+  display: flex;
+
+}
+
+
+/* CLASSES */
+
+.container {
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display:flex;
+}
+.nested-container {
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display:flex;
+}
+
+.forward {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+}
+.forward p,font {
+  font-size: 100px;
+  color: white;
+}
+.forward p a {
+  background-color: transparent;
+  border: 1px solid white;
+  padding: 15px 30px;
+  color :white;
+  transition: .5s;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  font-weight:bold;
+
+}
+.forward p a:hover {
+  border-color: red;
+  color :white;
+}
+
+.fixed {
+  width: 100%;
+  height: auto;
+  bottom: 5%;
+  background-color: white;
+  position: fixed;
+  z-index: 999;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  padding: 20px;
+}
+.fixed a {
+  color: black;
+  font-size: 25px;
+  width: 100%;
+}
+.fixed .email,.phone,.social {
+  width: 33.333333%;
+  color: black;
+  font-size: 25px;
+
+}
+.fixed .social .social-icons {
+  display: inline-flex;
+  list-style: none;
+  font-size: 15px;
+}
+.fixed .social .social-icons li {
+    vertical-align: top;
+    float: right;
+    list-style: none;
+}
+.fixed .social .social-icons a {
+    color: #fff;
+    text-decoration: none;
+    height: 30px;
+
+}
+.fixed .social .social-icons a i {
+    font-size: 18px;
+
+}
+.fixed .social .social-icons .social-icon {
+    color: black;
+    text-align: center;
+}
+.fa-facebook {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #fff;
+}
+.fa-facebook:hover {
+    background-color: #3d5b99;
+    color: #fff;
+}
+.fa-twitter {
+    padding:10px 12px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #fff;
+}
+.fa-twitter:hover {
+    background-color: #00aced;
+    color: #fff;
+}
+.fa-youtube {
+    padding:10px 14px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #fff;
+}
+.fa-youtube:hover {
+    background-color: #e64a41;
+    color: #fff;
+}
+.fa-google-plus {
+    padding:10px 9px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition: .5s;
+    background-color: #fff;
+}
+.fa-google-plus:hover {
+    background-color: #e25714;
+    color: #fff;
+}
+
+.toggle {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 62px;
+  height: 32px;
+  display: inline-block;
+  position: fixed;
+  right: 0;
+  margin-right: 5%;
+  float:right;
+  border-radius: 50px;
+  overflow: hidden;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background:linear-gradient(135deg, rgba(164,67,230,1) 20%, rgba(252,69,94,1) 50%, rgba(215,184,19,1) 80%);
+  transition: background-color ease 0.3s;
+  font-family:Raleway-Regular;
+  color:#fff;
+}
+
+.toggle:before {
+  content: "off on";
+  display: block;
+  position: absolute;
+  z-index: 2;
+  width: 28px;
+  height: 28px;
+  background: #fff;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  font: 10px/28px Helvetica;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-indent: -22px;
+  word-spacing: 37px;
+  text-shadow: -1px -1px rgba(0,0,0,0.15);
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
+}
+
+.toggle:checked {
+  background: gainsboro!important;
+  color:black;
+}
+
+.toggle:checked:before {
+  left: 32px;
+}
+
+/* IDENTIFIERS */
+/* fonts */
+
+@font-face {
+  font-family: Raleway-Regular;
+  src:url('../fonts/Raleway-Regular.ttf');
+}
+@font-face {
+  font-family: Raleway-Bold;
+  src:url('../fonts/Raleway-Bold.ttf');
+}

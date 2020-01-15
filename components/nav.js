@@ -1,9 +1,11 @@
-import React from 'react'
-import Link from 'next/link'
+import React from 'react';
+import Link from 'next/link';
+
 
 const links = [
-  { href: 'https://zeit.co/now', label: 'ZEIT' },
-  { href: 'https://github.com/zeit/next.js', label: 'GitHub' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/about', label: 'Ben Kimim ?' },
+  { href: '/contact', label: 'İletişim' },
 ].map(link => {
   link.key = `nav-link-${link.href}-${link.label}`
   return link
@@ -13,44 +15,52 @@ const Nav = () => (
   <nav>
     <ul>
       <li>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
+          <a href="/" className="bottomLine" >Anasayfa<span></span></a>
+        <span></span>
       </li>
       {links.map(({ key, href, label }) => (
         <li key={key}>
-          <a href={href}>{label}</a>
+          <a className="bottomLine" href={href}>{label}<span></span></a>
         </li>
       ))}
     </ul>
 
     <style jsx>{`
-      :global(body) {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
-          Helvetica, sans-serif;
-      }
       nav {
         text-align: center;
       }
       ul {
-        display: flex;
+
         justify-content: space-between;
       }
       nav > ul {
         padding: 4px 16px;
       }
       li {
-        display: flex;
-        padding: 6px 8px;
+        color:black;
+        list-style: none;
+        float: left;
+        display:flex;
+
+      }
+      li a span {
+        font-size:20px;
+        padding-right:20px;
+        border-right:1px solid black;
+      }
+      li:last-child a span {
+        border:none;
       }
       a {
-        color: #067df7;
+        padding:15px 20px;
+        padding-right:0;
+
+        display:block;
+        color:black;
         text-decoration: none;
-        font-size: 13px;
       }
     `}</style>
   </nav>
 )
 
-export default Nav
+export default Nav;
