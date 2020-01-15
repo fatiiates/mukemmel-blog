@@ -113,44 +113,91 @@ const Contact = ({posts}) => (
         width:100%;
       }
       /* SPECIAL CSS */
-      #mail:before {
+      .active:before {
         opacity:1;
       }
+      .fa-social {
+        padding: 20px;
+        font-size: 30px;
+        border-radius: 50%;
+        text-decoration: none;
+        margin: 5px 2px;
+        min-width:30px;
+        transition:.5s;
+      }
+      .fa-facebook:hover {
+        background: #3B5998;
+        color: white;
+      }
+
+      .fa-twitter:hover {
+        background: #55ACEE;
+        color: white;
+      }
+
+      .fa-google:hover {
+        background: #dd4b39;
+        color: white;
+      }
+
+      .fa-linkedin:hover {
+        background: #007bb5;
+        color: white;
+      }
+
+      .fa-youtube:hover {
+        background: #bb0000;
+        color: white;
+      }
+
+      .fa-instagram:hover {
+        background: #874b0f;
+        color: white;
+      }
+
   `}</style>
+
   <div className="builds">
+
     <p id="deyim" >"Arayan <font id="mevla" className="hvr-trim">mevlasını</font> da bulur <font id="bela" className="hvr-trim" >belasını</font> da"</p>
     <div className="container">
       <div className="builds-content" >
         <div className="builds-content-top">
-          <Link href="contact/e-mail" >
-            <a id="mail" className="hvr-trim"  >
+          <Link  >
+            <a id="e-mail" className="hvr-trim active" >
               <div className="field" >
                 <p><i className="fa fa-envelope"></i>E-posta</p>
               </div>
             </a>
           </Link>
-          <Link href="contact/phone" >
-            <a className="hvr-trim" >
+          <Link >
+            <a id="phone" className="hvr-trim" >
               <div className="field" >
                 <p><i className="fa fa-phone"></i>Telefon</p>
               </div>
             </a>
           </Link>
-          <Link href="contact/social" >
-            <a className="hvr-trim" >
+          <Link  >
+            <a id="social" className="hvr-trim" >
               <div className="field" style={{borderRight:"none"}} >
                 <p><i className="fa fa-thumbs-up"></i>Sosyal Medya</p>
               </div>
             </a>
           </Link>
         </div>
-          <div className="builds-content-bottom">
-            <p className="builds-description" >{posts.find(post => post.slug === "e-mail").title}</p>
-          </div>
+        {posts.map(post =>  (
 
+          <div htmlFor={post.slug} key={post.id} className="builds-content-bottom">
+          {(post.title).map(nestedPost => (
+            post.slug == "social" ? <a key={nestedPost.id} className={"fa fa-social "+"fa-"+nestedPost.content.split('.')[1]} ></a> : <p key={nestedPost.id} className="builds-description" >{nestedPost.content}</p>
+
+          ))}
+          </div>
+        ))}
       </div>
     </div>
   </div>
+  <script type="text/javascript" src="/static/js/site.js"></script>
   <script type="text/javascript" src="/static/js/sketch.min.js"></script>
   <script type="text/javascript" src="/static/js/builds.js"></script>
 
