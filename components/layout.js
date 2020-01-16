@@ -2,7 +2,7 @@ import Head from "./head";
 
 const Layout = props => (
 
-  <div className="container">
+  <div className="container col-md-12">
     <style jsx global>{`
       .container {
         display:block;

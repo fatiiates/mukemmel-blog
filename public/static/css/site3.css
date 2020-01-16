@@ -1,37 +1,37 @@
 
 /* TAGS */
 
-*{
+* {
   font-size: 25px;
   font-family: Raleway-Regular;
   margin: 0px;
   padding: 0px;
-  text-decoration: none;
+  text-decoration: none!important;
   word-break: normal;
   word-wrap: break-word;
+  line-height: 1.4;
+
 }
+
 
 
 header{
   font-size: 20px;
-  width: 100%;
   height: 170px;
   text-align: center;
   color: white;
   z-index: 1;
 }
 header .headerTop {
-  width: 70%;
   background-color: transparent;
   color:black;
   float: none;
   height: 40px;
   display: flex;
-  margin:0 15% 0 15%;
+  margin:0 15%;
 
 }
 header .headerTop div {
-  width: 50%;
   height: 40px;
 }
 header .headerTop .welcome {
@@ -41,25 +41,112 @@ header .headerTop .welcome {
   display: flex;
   align-items: center;
 }
+header .headerTop .welcome img {
+  margin-right:-10px;
+  margin-top:5px;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
 header .headerBottom {
-  width: 100%;
   color:black;
   float: left;
   height: 130px;
   display: flex;
   box-shadow: 10px 10px 10px rgba(0,0,0,.2);
+  -o-box-shadow: 10px 10px 10px rgba(0,0,0,.2);
+  -moz-box-shadow: 10px 10px 10px rgba(0,0,0,.2);
+  -webkit-box-shadow: 10px 10px 10px rgba(0,0,0,.2);
   min-height: 70px;
-    align-items: center;
-    background-color: rgba(255,255,255,.9);
+  align-items: center;
+  background-color: white;
 
 }
 header .headerBottom div {
-  width: 50%;
   height: 100px;
   align-items: center;
   display: flex;
 
 }
+footer * {
+  font-size: 20px;
+  font-family: Raleway-Regular;
+  color: white;
+  background-color: transparent;
+}
+footer {
+  height: auto;
+  padding: 15px;
+  padding-bottom: 100px;
+  background: rgba(255,255,255,.2);
+
+}
+footer .container {
+  padding:100px 15%!important;
+  height: auto;
+  background: transparent;
+  display: flex;
+  background: rgba(22,25,35,.8);
+  box-shadow: 0px 0px 10px 10px rgba(0,0,0,.5);
+  -o-box-shadow: 0px 0px 10px 10px rgba(0,0,0,.5);
+  -moz-box-shadow: 0px 0px 10px 10px rgba(0,0,0,.5);
+  -webkit-box-shadow: 0px 0px 10px 10px rgba(0,0,0,.5);
+
+}
+footer .more {
+  border-right: 1px solid white;
+}
+footer p {
+  width: 300px;
+  text-align: start;
+  padding-bottom:5px;
+  font-size: 45px
+}
+footer p font {
+  border-bottom: 1px solid white;
+  font-size: 45px;
+}
+footer ul {
+  align-items: center;
+}
+footer ul li {
+  text-indent: 20px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+footer ul li a,footer ul li p {
+  width: 250px;
+  text-decoration: none;
+  text-align: start;
+  display: block;
+  transition: .5s;
+  color:white;
+  font-size: 20px;
+
+}
+footer ul li a font {
+  color:white;
+  font-size: 20px;
+  border-bottom: 1px solid white;
+  transition: .6s;
+}
+footer ul li a:hover  {
+  text-decoration: none;
+  color:black;
+  background-color: white;
+}
+footer ul li a:hover font {
+  color:black;
+}
+footer ul li:first-child p{
+  margin-right: 25px;
+}
+footer ul li p i {
+  margin: 0;
+  margin-right: 5px;
+}
+
+
 
 
 /* CLASSES */
@@ -69,23 +156,23 @@ header .headerBottom div {
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 100%;
   height: 100%;
   display:flex;
+
 }
 .nested-container {
   vertical-align: middle;
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 100%;
   height: 100%;
   display:flex;
+  background: rgba(255,255,255,.2)
+
 }
 
 .forward {
   z-index: 999;
-  width: 100%;
   height: 100%;
   position: absolute;
   vertical-align: middle;
@@ -117,7 +204,6 @@ header .headerBottom div {
 }
 
 .fixed {
-  width: 100%;
   height: auto;
   bottom: 5%;
   background-color: white;
@@ -133,10 +219,8 @@ header .headerBottom div {
 .fixed a {
   color: black;
   font-size: 25px;
-  width: 100%;
 }
 .fixed .email,.phone,.social {
-  width: 33.333333%;
   color: black;
   font-size: 25px;
 
@@ -172,7 +256,7 @@ header .headerBottom div {
     -moz-transition:.5s;
     -webkit-transition:.5s;
     transition: .5s;
-    background-color: #fff;
+    background-color: transparent;
 }
 .fa-facebook:hover {
     background-color: #3d5b99;
@@ -273,12 +357,3 @@ header .headerBottom div {
 
 /* IDENTIFIERS */
 /* fonts */
-
-@font-face {
-  font-family: Raleway-Regular;
-  src:url('../fonts/Raleway-Regular.ttf');
-}
-@font-face {
-  font-family: Raleway-Bold;
-  src:url('../fonts/Raleway-Bold.ttf');
-}

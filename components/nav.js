@@ -54,7 +54,7 @@ const Nav = () => (
       a {
         padding:15px 20px;
         padding-right:0;
-
+        font-size:25px;
         display:block;
         color:black;
         text-decoration: none;

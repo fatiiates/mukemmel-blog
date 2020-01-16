@@ -2,12 +2,15 @@ import React from "react";
 import Nav from "./nav.js";
 
 const Header = props => (
-  <header>
-  <div className="headerTop" >
-    <div className="welcome" >Bloğuma hoşgeldin!</div>
-    <div className="social" >
+  <header className="col-md-12" >
+  <div className="headerTop col-md-9">
+    <div className="welcome col-md-6" ><img src="/static/img/king.png" height="50" width="50"/>Bloğuma hoşgeldin!</div>
+    <div className="social col-md-6" >
       <ul className="social-icons" >
       <style jsx>{`
+        :global(header) {
+          background: rgba(255,255,255,.2);
+        }
         li {
           float:right;
           list-style:none
@@ -55,8 +58,8 @@ const Header = props => (
       </ul>
     </div>
   </div>
-  <div className="headerBottom" >
-    <div  style={{padding:"15px",fontSize:"25px"}}>
+  <div className="headerBottom col-md-12" >
+    <div className="col-md-12"  style={{padding:"15px",fontSize:"25px"}}>
       <style jsx>{`
         * {
           font-size:30px;
@@ -67,7 +70,7 @@ const Header = props => (
         <p className="text"><span className="text_element text_element--border-effect"> </span> </p>
       </center>
     </div>
-    <div>
+    <div className="col-md-12" >
       <center>
         <Nav/>
       </center>
