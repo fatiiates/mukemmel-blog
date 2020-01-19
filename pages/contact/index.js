@@ -37,9 +37,6 @@ const Contact = ({posts}) => (
           top: 0;
 
         }
-        .headerBottom {
-          background-color:white!important;
-        }
         .container {
           background:transparent;
           height:auto;
@@ -131,49 +128,6 @@ const Contact = ({posts}) => (
         .passive {
           visibility:hidden;
           display:none!important;
-
-        }
-        .fa-social {
-          padding: 20px;
-          font-size: 30px;
-          border-radius: 50%;
-          text-decoration: none;
-          margin: 5px 2px;
-          min-width:66px;
-          transition:.5s;
-          width:auto;
-          text-indent:0;
-          text-align:center;
-
-        }
-        .fa-facebook:hover {
-          background: #3B5998;
-          color: white;
-        }
-
-        .fa-twitter:hover {
-          background: #55ACEE;
-          color: white;
-        }
-
-        .fa-google:hover {
-          background: #dd4b39;
-          color: white;
-        }
-
-        .fa-linkedin:hover {
-          background: #007bb5;
-          color: white;
-        }
-
-        .fa-youtube:hover {
-          background: #bb0000;
-          color: white;
-        }
-
-        .fa-instagram:hover {
-          background: #874b0f;
-          color: white;
         }
         footer {
           z-index:2;
@@ -207,7 +161,7 @@ const Contact = ({posts}) => (
 
             <div htmlFor={post.slug} key={post.id} className={post.slug == "e-mail" ? "builds-content-bottom" : "builds-content-bottom passive" } style={{zIndex:3-post.id}} >
             {(post.title).map(nestedPost => (
-              post.slug == "social" ? <a key={nestedPost.id} href={nestedPost.content} className={"fa fa-social "+nestedPost.class} ></a> : <p key={nestedPost.id} className="builds-description" >{nestedPost.content}</p>
+              post.slug == "social" ? <a key={nestedPost.id} href={nestedPost.content} className={"fab fa-social "+nestedPost.class} ></a> : <p key={nestedPost.id} className="builds-description" >{nestedPost.content}</p>
 
             ))}
             </div>
@@ -224,7 +178,7 @@ const Contact = ({posts}) => (
       {posts.map(post =>  (
         <li key={post.slug}>
         {(post.title).map(nestedPost => (
-          post.slug == "social" ? <a key={nestedPost.id} href={nestedPost.content} className={"fa fa-social "+nestedPost.class} ></a> : <p key={nestedPost.id} ><i className={"fa "+nestedPost.class} ></i>{nestedPost.content}</p>
+          post.slug == "social" ? <a key={nestedPost.id} href={nestedPost.content} className={"fab fa-social "+nestedPost.class} ></a> : <p key={nestedPost.id} ><i className={"fa "+nestedPost.class} ></i>{nestedPost.content}</p>
         ))}
         </li>
       ))}

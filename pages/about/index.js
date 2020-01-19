@@ -61,37 +61,6 @@ const About = ({ posts }) => (
           font-size:30px;
           color:black;
         }
-        .fa-social {
-          padding: 20px;
-          font-size: 30px;
-          border-radius: 50%;
-          text-decoration: none;
-          margin: 5px 2px;
-          min-width:66px;
-          transition:.5s;
-          width:auto;
-          text-indent:0;
-          text-align:center;
-        }
-        .fa-facebook:hover {
-          background: #3B5998;
-          color: white;
-        }
-
-        .fa-google:hover {
-          background: #dd4b39;
-          color: white;
-        }
-
-        .fa-linkedin:hover {
-          background: #007bb5;
-          color: white;
-        }
-
-        .fa-instagram:hover {
-          background: #874b0f;
-          color: white;
-        }
 
 
       `}</style>
@@ -130,7 +99,7 @@ const About = ({ posts }) => (
         {posts.map(post =>  (
           <li key={post.slug}>
           {(post.title).map(nestedPost => (
-            post.slug == "social" ? <a key={nestedPost.id} href={nestedPost.content} className={"fa fa-social "+nestedPost.class} ></a> : <p key={nestedPost.id} ><i className={"fa "+nestedPost.class} ></i>{nestedPost.content}</p>
+            post.slug == "social" ? <a key={nestedPost.id} href={nestedPost.content} className={"fab fa-social "+nestedPost.class} ></a> : <p key={nestedPost.id} ><i className={"fa "+nestedPost.class} ></i>{nestedPost.content}</p>
           ))}
           </li>
         ))}

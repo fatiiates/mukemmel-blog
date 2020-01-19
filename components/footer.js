@@ -19,6 +19,27 @@ const more = [
 const Footer =  props => (
   <footer className="col-md-12">
     <div className="container col-md-12">
+    <style jsx >{`
+      .container {
+        display:block;
+      }
+      .end {
+        padding:0 10%;
+      }
+      .end p {
+        width:100%;
+      }
+      .end li {
+        justify-content:start;
+      }
+      .end a {
+        width:fit-content;
+        text-indent:0;
+        padding:0 20px;
+      }
+      
+
+    `}</style>
       <div className="more col-md-6" >
         <center>
           <p><font>Da</font>ha fazla</p>
@@ -30,27 +51,7 @@ const Footer =  props => (
           ))}</ul>
       </div>
       {props.children}
-      <style jsx >{`
-        .container {
-          display:block;
-        }
-        .end {
-          padding:0 10%;
-        }
-        .end p {
-          width:100%;
-        }
-        .end li {
-          justify-content:start;
-        }
-        .end a {
-          width:fit-content;
-          text-indent:0;
-          padding:0 20px;
-        }
 
-
-      `}</style>
       <div className="end col-md-12" >
         <br/>
         <hr/>

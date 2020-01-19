@@ -9,17 +9,14 @@
   font-family: Raleway-Regular;
   src: url('../fonts/raleway/Raleway-Regular.ttf');
 }
-
 @font-face {
   font-family: Raleway-Medium;
   src: url('../fonts/raleway/Raleway-Medium.ttf');
 }
-
 @font-face {
   font-family: Raleway-SemiBold;
   src: url('../fonts/raleway/Raleway-SemiBold.ttf');
 }
-
 @font-face {
   font-family: Raleway-Bold;
   src: url('../fonts/raleway/Raleway-Bold.ttf');

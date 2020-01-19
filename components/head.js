@@ -5,7 +5,7 @@ const HeadTag = () => (
 
     <Head>
       <title>Blog</title>
-      <meta charSet="utf8" />
+      <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="description" content="Free Web tutorials"/>
       <meta name="keywords" content="HTML,CSS,C#,JavaScript,RTF"/>
       <meta name="author" content="Fatih ATEŞ"/>
@@ -26,7 +26,10 @@ const HeadTag = () => (
       <link href="/static/css/site3.css" rel="stylesheet" />
       <link href="/static/css/bootstrap.css" rel="stylesheet" />
 
-      <link href="/static/fonts/font-awesome.min.css" rel="stylesheet" />
+      <link href="/static/fonts/fontawesome/css/solid.min.css" rel="stylesheet" />
+      <link href="/static/fonts/fontawesome/css/brands.min.css" rel="stylesheet" />
+      <link href="/static/fonts/fontawesome/css/regular.min.css" rel="stylesheet" />
+      <link href="/static/fonts/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
       <link href="/static/css/animate.css" rel="stylesheet" />
 
     </Head>
