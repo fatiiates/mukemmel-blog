@@ -18,7 +18,7 @@ const heights = [
 });;
 
 
-const BlogPost = ({ posts }) => (
+const BlogPost = ({ posts, postsSelect }) => (
 
     <Layout>
       <Header></Header>
@@ -80,31 +80,34 @@ const BlogPost = ({ posts }) => (
         }
 
       `}</style>
+
       <div className="nested-container col-md-12 ">
         <div className="blog-container col-md-8" >
+        {postsSelect.map(prop => (
           <div className="blog-content col-md-12" >
-            <img className="img col-md-12" src="/static/img/arc.jpg"/>
+
+            <img className="img col-md-12" src={prop.blog_src} />
             <div className="blog" style={{padding:"1px!important"}}>
-              <div className="issue col-md-12 " ><a href="l" className="shake">sadsadsa</a></div>
+              <div className="issue col-md-12 " ><a href="l" className="shake">{prop.blog_issue}</a></div>
             </div>
             <div className="blog col-md-12 " >
               <div className="info col-md-12 " >
-                <p className="data" ><i className="fas fa-calendar" ></i>&nbsp;12.12.2020&emsp;</p>
-                <a className="author" ><i className="fas fa-pencil-alt" ></i>&nbsp;Author Yazar</a>
-                <p className="data" ><i className="far fa-comment" ></i>&nbsp;10&emsp;<i className="far fa-eye" ></i>&nbsp;24</p>
+                <p className="data" ><i className="fas fa-calendar" ></i>&nbsp;{prop.blog_inDate}&emsp;</p>
+                <a className="author" ><i className="fas fa-pencil-alt" ></i>&nbsp;{prop.blog_author}</a>
+                <p className="data" >&emsp;<i className="far fa-eye" ></i>&nbsp;{prop.blog_views}</p>
               </div>
 
             </div>
             <div className="title col-md-12" >
-              Başlık Başlık Başlık Başlık Başlık Başlık Başlık Başlık Başlık Başlık Başlık Başlık Başlık Başlık
+              {prop.blog_title}
             </div>
             <div className="description col-md-12" >
-              Yaygın inancın tersine, Lorem Ipsum rastgele sözcüklerden oluşmaz. Kökleri M.Ö. 45 tarihinden bu yana klasik Latin edebiyatına kadar uzanan 2000 yıllık bir geçmişi vardır. Virginia'daki Hampden-Sydney College'dan Latince profesörü Richard McClintock, bir Lorem Ipsum pasajında geçen ve anlaşılması en güç sözcüklerden biri olan 'consectetur' sözcüğünün klasik edebiyattaki örneklerini incelediğinde kesin bir kaynağa ulaşmıştır. Lorm Ipsum, Çiçero tarafından M.Ö. 45 tarihinde kaleme
-              alınan "de Finibus Bonorum et Malorum" (İyi ve Kötünün Uç Sınırları) eserinin 1.10.32 ve 1.10.33 sayılı bölümlerinden gelmektedir. Bu kitap, ahlak kuramı üzerine bir tezdir ve Rönesans döneminde çok popüler olmuştur. Lorem Ipsum pasajının ilk satırı olan "Lorem ipsum dolor sit amet" 1.10.32 sayılı bölümdeki bir satırdan gelmektedir.
+              {prop.blog_description}
             </div>
 
 
           </div>
+          ))}
           <div className="blog-content col-md-12" >
           <div className="title col-md-12" >
             Konu hakkında bana buradan mail atabilirsiniz...
@@ -169,13 +172,19 @@ const BlogPost = ({ posts }) => (
 
 BlogPost.getInitialProps = async ({ req,query }) => {
   // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
-  /*if(process.env.NODE_ENV === "development")*/
-  console.log(query.post);
-    const res= await fetch("http://localhost:3000/api/contactPost");
-  /*else if (process.env.NODE_ENV === "production")
-    const res= await fetch("http://mukemmellblog.herokuapp.com/api/posts/contact");*/
-  const json = await res.json();
-  return { posts: json.posts };
+    const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
+
+    const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
+    const id=query.post / 1580246913975308624 ;
+    const resRequest=`${host}/api/contactPost`;
+    const pageRequestSelect = `${host}/api/db/select?page=0&limit=1&token=${tokenmd5}&que=blogPost&blog_id=${id}`;
+
+    const res= await fetch(resRequest);
+    const resSelect = await fetch(pageRequestSelect);
+    const json = await res.json();
+    const jsonSelect = await resSelect.json();
+
+  return { posts: json.posts ,postsSelect:jsonSelect.posts};
 
 };
 
