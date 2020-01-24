@@ -2,10 +2,10 @@ import React from "react";
 import fetch from "isomorphic-unfetch";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-import Layout from "../../components/admin/layout";
-import Header from "../../components/admin/header";
-import Footer from "../../components/admin/footer";
-import Nav from "../../components/admin/nav";
+import Layout from "../../../components/admin/layout";
+import Header from "../../../components/admin/header";
+import Footer from "../../../components/admin/footer";
+import Nav from "../../../components/admin/nav";
 
 
 const Home = ({ posts }) => (
@@ -19,7 +19,7 @@ const Home = ({ posts }) => (
                     <h1 className="page-head-line">HOŞGELDİN ADMİN <i className="em em-heart_eyes" ariarole="presentation" arialabel="SMILING FACE WITH HEART-SHAPED EYES"></i></h1>
                     <h1 className="page-subhead-line">Gezinme çubukları ile sana tanınmış tüm özellikleri yerine getirebilirsin.
                     Kendi evin gibi&nbsp;&nbsp;
-                    <i className="em em-laughing" ariarole="presentation" arialabel="SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES"></i></h1>
+                    <i class="em em-laughing" aria-role="presentation" aria-label="SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES"></i></h1>
                 </div>
             </div>
 

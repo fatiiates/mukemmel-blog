@@ -93,7 +93,6 @@ Blog.getInitialProps = async ({ req }) => {
   const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
   const resRequest=`${host}/api/contactPost`;
   const pageRequestSelect = `${host}/api/db/select?page=0&limit=9&token=${tokenmd5}&que=blogs`;
-  console.log(pageRequestSelect);
 
   const res= await fetch(resRequest);
   const resSelect = await fetch(pageRequestSelect);
