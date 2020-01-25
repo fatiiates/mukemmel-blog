@@ -23,19 +23,12 @@ module.exports = async (req, res) => {
       case "blogsActive":
           querySelect[0]=escape`SELECT * FROM blog_post where blog_publish=1 ORDER BY blog_id desc LIMIT ${(page - 1) * limit}, ${limit}`;
         break;
-      case "blogActiveToPassive" :
-          querySelect[0]=escape`UPDATE blog_post set blog_publish=0 where blog_id=${req.query.blog_id}`;
-      break;
       case "blogsPassive":
           querySelect[0]=escape`SELECT * FROM blog_post where blog_publish=0 ORDER BY blog_id desc`;
         break;
-      case "blogPassiveToActive" :
-          querySelect[0]=escape`UPDATE blog_post set blog_publish=1 where blog_id=${req.query.blog_id}`;
+      default:
+          const posts = "error";
         break;
-      case "blogDelete" :
-          querySelect[0]=escape`DELETE FROM blog_post where blog_id=${req.query.blog_id} AND blog_publish=0`;
-        break;
-      default:break;
     }
     const posts = await db.query(querySelect[0]);
 

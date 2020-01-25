@@ -8,6 +8,7 @@ import Footer from "../../../components/admin/footer";
 import Nav from "../../../components/admin/nav";
 import Notification from "../../../components/classes/tags/notification";
 import MyLink from "../../../components/classes/tags/myLink";
+import storage from "../../../lib/Firebase/index";
 
 let key=1;
 
@@ -16,7 +17,7 @@ const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "h
 
 async function blogActive(el){
 
- const pageRequestSelect = `${host}/api/db/select?page=0&limit=1&blog_id=${el}&token=${tokenmd5}&que=blogPassiveToActive`;
+ const pageRequestSelect = `${host}/api/db/update?page=0&limit=1&blog_id=${el}&token=${tokenmd5}&que=blogPassiveToActive`;
  const resSelect = await fetch(pageRequestSelect);
 
  const jsonSelect = await resSelect.json();
@@ -30,20 +31,36 @@ async function blogActive(el){
  }
 }
 
+deleteImage(url){
+  var imgName=url.toString().split("images%2F");
+  imgName=imgName[1].toString().split("?alt");
+  imgName=imgName[0];
+  const desertRef = storage.ref().child('images/'+imgName);
+  desertRef.delete().then(function() {
+    // File deleted successfully
+    return true;
+  }).catch(function(error) {
+    console.log(error);
+  });
+}
+
 async function blogDelete(el){
+  if(deleteImage($('#src_'+el).val())){
 
- const pageRequestSelect = `${host}/api/db/select?page=0&limit=1&blog_id=${el}&token=${tokenmd5}&que=blogDelete`;
- const resSelect = await fetch(pageRequestSelect);
+    const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
+    const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
+    const pageRequestSelect = `${host}/api/db/delete?tokenLocal=${tokenmd5}&que=blogDelete&blog_id=${el}`;
 
- const jsonSelect = await resSelect.json();
- if(jsonSelect.posts.warningCount === 0 && (jsonSelect.posts.affectedRows > 0 || jsonSelect.posts.changedRows > 0)){
-   window.location="#success";
-   $("tr[data="+el+"]").remove();
- }
- else {
-   window.location="#error";
-   window.location.reload()
- }
+    const resSelect = await fetch(pageRequestSelect);
+    const jsonSelect = await resSelect.json();
+    if(jsonSelect.posts.warningCount === 0 && (jsonSelect.posts.affectedRows > 0 || jsonSelect.posts.changedRows > 0)){
+      window.location="#success";
+    }
+    else {
+      window.location="#error";
+    }
+  }
+
 }
 
 const Home = ({ postsSelect }) => (
@@ -92,6 +109,7 @@ const Home = ({ postsSelect }) => (
                                         <td>{post.blog_issue}</td>
                                         <td>{post.blog_views}</td>
                                         <td >
+                                        <input id={`src_${post.blog_id}`} type="hidden" value={post.blog_src} />
                                             <MyLink onClick={() => blogDelete(post.blog_id)} className="btn btn-danger" >
                                               Sil
                                             </MyLink>

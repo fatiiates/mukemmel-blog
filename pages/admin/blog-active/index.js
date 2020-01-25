@@ -15,7 +15,7 @@ async function blogPassive(el){
  const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
  const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
 
- const pageRequestSelect = `${host}/api/db/select?page=0&limit=1&blog_id=${el}&token=${tokenmd5}&que=blogActiveToPassive`;
+ const pageRequestSelect = `${host}/api/db/update?page=0&limit=1&blog_id=${el}&token=${tokenmd5}&que=blogActiveToPassive`;
  const resSelect = await fetch(pageRequestSelect);
 
  const jsonSelect = await resSelect.json();
@@ -75,7 +75,7 @@ const Home = ({ postsSelect }) => (
                                         <td>{post.blog_inDate}</td>
                                         <td>{post.blog_issue}</td>
                                         <td>{post.blog_views}</td>
-                                        <td ><a href={`/admin/blog-update?blog=${post.blog_id}`}><input type="button" className="btn btn-primary" value="Düzenle"/></a></td>
+                                        <td ><a href={`/admin/blog-add/${post.blog_id*1580246913975308624}`}><input type="button" className="btn btn-primary" value="Düzenle"/></a></td>
                                         <td>
                                             <MyLink onClick={() => blogPassive(post.blog_id)} className="btn btn-danger" >
                                               Pasifleştir
