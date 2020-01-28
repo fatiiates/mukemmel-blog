@@ -22,7 +22,6 @@ const Home = ({ posts }) => (
                     <i class="em em-laughing" aria-role="presentation" aria-label="SMILING FACE WITH OPEN MOUTH AND TIGHTLY-CLOSED EYES"></i></h1>
                 </div>
             </div>
-
         </div>
         <Footer/>
 

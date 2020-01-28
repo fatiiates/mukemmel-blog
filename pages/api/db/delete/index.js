@@ -4,7 +4,7 @@ const escape = require('sql-template-strings')
 module.exports = async (req, res) => {
   const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
 
-  if(tokenmd5 == req.query.token){
+  if(tokenmd5 == req.query.tokenLocal){
 
 
     const querySelect=["query"];//Sonradan değişebilmek için ilk değer veriyorum diziye

@@ -10,6 +10,10 @@ import Notification from "../../../components/classes/tags/notification";
 import MyLink from "../../../components/classes/tags/myLink";
 import MyFileUpload from "../../../components/classes/tags/myBlogUpdate";
 
+import Router from 'next/router'
+import nextCookie from 'next-cookies'
+import { withAuthSync } from '../../../utils/auth'
+import getHost from '../../../utils/get-host'
 
 const Home = ({ posts }) => (
   <Layout>
@@ -86,20 +90,44 @@ const Home = ({ posts }) => (
 
 
 
-Home.getInitialProps = async ({ req, query }) => {
+Home.getInitialProps = async ctx => {
   // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
-  const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
+  const { token } = nextCookie(ctx)
+  const apiUrl = getHost(ctx.req) + '/api/isLogin'
 
-  const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
-  const id=query.post / 1580246913975308624 ;
-  const pageRequestSelect = `${host}/api/db/select?page=0&limit=1&token=${tokenmd5}&que=blogPost&blog_id=${id}`;
+  const redirectOnError = () =>
+    typeof window !== 'undefined'
+      ? Router.push('/admin/sa-login')
+      : ctx.res.writeHead(302, { Location: '/admin/sa-login' }).end()
 
-  const resSelect = await fetch(pageRequestSelect);
-  const jsonSelect = await resSelect.json();
+  try {
+    const response = await fetch(apiUrl, {
+      credentials: 'include',
+      headers: {
+        Authorization: JSON.stringify({ token }),
+      },
+    })
+    if (response.ok) {
+      const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
 
-return { posts: jsonSelect.posts };
+      const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
+      const id=ctx.query.post / 1580246913975 ;
+      const pageRequestSelect = `${host}/api/db/select?page=0&limit=1&token=${tokenmd5}&que=blogPost&blog_id=${id}`;
+
+      const resSelect = await fetch(pageRequestSelect);
+      const jsonSelect = await resSelect.json();
+
+      return { posts: jsonSelect.posts };
+    } else {
+      // https://github.com/developit/unfetch#caveats
+      return await redirectOnError()
+    }
+  } catch (error) {
+    // Implementation or Network error
+    return redirectOnError()
+  }
 
 };
 
 
-export default Home;
+export default withAuthSync(Home);

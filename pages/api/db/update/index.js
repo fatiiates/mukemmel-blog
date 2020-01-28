@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
 
   }
   else{
-    const posts = req.query.token;
+    const posts = "error";
     res.status(200).json({ posts})
   }
 

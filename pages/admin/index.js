@@ -7,6 +7,10 @@ import Header from "../../components/admin/header";
 import Footer from "../../components/admin/footer";
 import Nav from "../../components/admin/nav";
 
+import Router from 'next/router'
+import nextCookie from 'next-cookies'
+import { withAuthSync } from '../../utils/auth'
+import getHost from '../../utils/get-host'
 
 const Home = ({ posts }) => (
   <Layout>
@@ -40,19 +44,35 @@ const Home = ({ posts }) => (
 
 
 
-/*Home.getInitialProps = async ({ req }) => {
-  // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
-  const res;
-  if(process.env.NODE_ENV === "development")
-    res= await fetch("http://localhost:3000/api/posts");
-  else if (process.env.NODE_ENV === "production")
-    res= await fetch("http://mukemmellblog.herokuapp.com/api/posts");
+Home.getInitialProps = async ctx => {
 
-  const json = await res.json();
-  console.log(process.env.NODE_ENV);
-  return { posts: json.posts };
+  const { token } = nextCookie(ctx)
+  const apiUrl = getHost(ctx.req) + '/api/isLogin'
 
-};*/
+  const redirectOnError = () =>
+    typeof window !== 'undefined'
+      ? Router.push('/admin/sa-login')
+      : ctx.res.writeHead(302, { Location: '/admin/sa-login' }).end()
+
+  try {
+    const response = await fetch(apiUrl, {
+      credentials: 'include',
+      headers: {
+        Authorization: JSON.stringify({ token }),
+      },
+    })
+    if (response.ok)
+      return {auth:"success"};
+    else {
+      // https://github.com/developit/unfetch#caveats
+      return await redirectOnError()
+    }
+  } catch (error) {
+    // Implementation or Network error
+    return redirectOnError()
+  }
+
+};
 
 
-export default Home;
+export default withAuthSync(Home);

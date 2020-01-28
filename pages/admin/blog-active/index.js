@@ -9,13 +9,18 @@ import Nav from "../../../components/admin/nav";
 import Notification from "../../../components/classes/tags/notification";
 import MyLink from "../../../components/classes/tags/myLink";
 
+import Router from 'next/router'
+import nextCookie from 'next-cookies'
+import { withAuthSync } from '../../../utils/auth'
+import getHost from '../../../utils/get-host'
+
 let key=1;
 
 async function blogPassive(el){
  const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
  const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
 
- const pageRequestSelect = `${host}/api/db/update?page=0&limit=1&blog_id=${el}&token=${tokenmd5}&que=blogActiveToPassive`;
+ const pageRequestSelect = `${host}/api/db/update?page=0&limit=1&blog_id=${el}&tokenLocal=${tokenmd5}&que=blogActiveToPassive`;
  const resSelect = await fetch(pageRequestSelect);
 
  const jsonSelect = await resSelect.json();
@@ -27,7 +32,7 @@ async function blogPassive(el){
 
  else {
    window.location="#error";
-   window.location.reload()
+   //window.location.reload()
  }
 }
 
@@ -75,7 +80,7 @@ const Home = ({ postsSelect }) => (
                                         <td>{post.blog_inDate}</td>
                                         <td>{post.blog_issue}</td>
                                         <td>{post.blog_views}</td>
-                                        <td ><a href={`/admin/blog-add/${post.blog_id*1580246913975308624}`}><input type="button" className="btn btn-primary" value="Düzenle"/></a></td>
+                                        <td ><a href={`/admin/blog-add/${parseInt(post.blog_id)*1580246913975}`}><input type="button" className="btn btn-primary" value="Düzenle"/></a></td>
                                         <td>
                                             <MyLink onClick={() => blogPassive(post.blog_id)} className="btn btn-danger" >
                                               Pasifleştir
@@ -103,20 +108,43 @@ const Home = ({ postsSelect }) => (
 );
 
 
-Home.getInitialProps = async ({ req }) => {
-  // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
+Home.getInitialProps = async ctx => {
 
-  const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
+  const { token } = nextCookie(ctx)
+  const apiUrl = getHost(ctx.req) + '/api/isLogin'
 
-  const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
-  const pageRequestSelect = `${host}/api/db/select?page=0&limit=99999&token=${tokenmd5}&que=blogsActive`;
+  const redirectOnError = () =>
+    typeof window !== 'undefined'
+      ? Router.push('/admin/sa-login')
+      : ctx.res.writeHead(302, { Location: '/admin/sa-login' }).end()
 
-  const resSelect = await fetch(pageRequestSelect);
-  const jsonSelect = await resSelect.json();
+  try {
+    const response = await fetch(apiUrl, {
+      credentials: 'include',
+      headers: {
+        Authorization: JSON.stringify({ token }),
+      },
+    })
+    if (response.ok) {
+      const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
 
-  return {postsSelect:jsonSelect.posts};
+      const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
+      const pageRequestSelect = `${host}/api/db/select?page=0&limit=99999&token=${tokenmd5}&que=blogsActive`;
+
+      const resSelect = await fetch(pageRequestSelect);
+      const jsonSelect = await resSelect.json();
+
+      return {postsSelect:jsonSelect.posts};
+    } else {
+      // https://github.com/developit/unfetch#caveats
+      return await redirectOnError()
+    }
+  } catch (error) {
+    // Implementation or Network error
+    return redirectOnError()
+  }
 
 };
 
 
-export default Home;
+export default withAuthSync(Home);

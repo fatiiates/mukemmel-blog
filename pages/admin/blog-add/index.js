@@ -10,7 +10,10 @@ import Notification from "../../../components/classes/tags/notification";
 import MyLink from "../../../components/classes/tags/myLink";
 import MyFileUpload from "../../../components/classes/tags/myBlogInsert";
 
-
+import Router from 'next/router'
+import nextCookie from 'next-cookies'
+import { withAuthSync } from '../../../utils/auth'
+import getHost from '../../../utils/get-host'
 
 const Home = ({ posts }) => (
   <Layout>
@@ -76,21 +79,35 @@ const Home = ({ posts }) => (
 );
 
 
+Home.getInitialProps = async ctx => {
+
+  const { token } = nextCookie(ctx)
+  const apiUrl = getHost(ctx.req) + '/api/isLogin'
+
+  const redirectOnError = () =>
+    typeof window !== 'undefined'
+      ? Router.push('/admin/sa-login')
+      : ctx.res.writeHead(302, { Location: '/admin/sa-login' }).end()
+
+  try {
+    const response = await fetch(apiUrl, {
+      credentials: 'include',
+      headers: {
+        Authorization: JSON.stringify({ token }),
+      },
+    })
+    if (response.ok)
+      return {auth:"success"};
+    else {
+      // https://github.com/developit/unfetch#caveats
+      return await redirectOnError()
+    }
+  } catch (error) {
+    // Implementation or Network error
+    return redirectOnError()
+  }
+
+};
 
 
-/*Home.getInitialProps = async ({ req }) => {
-  // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
-  const res;
-  if(process.env.NODE_ENV === "development")
-    res= await fetch("http://localhost:3000/api/posts");
-  else if (process.env.NODE_ENV === "production")
-    res= await fetch("http://mukemmellblog.herokuapp.com/api/posts");
-
-  const json = await res.json();
-  console.log(process.env.NODE_ENV);
-  return { posts: json.posts };
-
-};*/
-
-
-export default Home;
+export default withAuthSync(Home);

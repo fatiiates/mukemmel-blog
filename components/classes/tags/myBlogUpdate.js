@@ -35,9 +35,11 @@ class MyFileUpload extends React.Component {
      const jsonSelect = await resSelect.json();
      if(jsonSelect.posts.warningCount === 0 && (jsonSelect.posts.affectedRows > 0 || jsonSelect.posts.changedRows > 0)){
        window.location="#success";
+       window.location.reload();
      }
      else {
        window.location="#error";
+       window.location.reload();
      }
      $('#loading').removeClass("lds-facebook");
   }
@@ -93,6 +95,7 @@ class MyFileUpload extends React.Component {
               this.setState({url});
               this.blogUpdate();
               $('#loading').removeClass("lds-facebook");
+              window.location.reload();
             });
 
         }
