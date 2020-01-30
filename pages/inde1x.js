@@ -13,11 +13,51 @@ const Home = ({ posts }) => (
   <Layout>
   <Head/>
   <MYApp/>
+  <style jsx global>{`
+    .container {
+      padding:0!important;
+    }
+    @media screen and (max-width:1000px){
+      #__next,.container {
+        width:100%;
+        height:100%;
+      }
+      .forward{
+        width:100%;
+        height:100%;
+        justify-content:center;
+        align-items:center;
+        display:flex;
+      }
+      p {
+        padding:30px;
+        width:100%;
+        background:rgba(0,0,0,.5);
+      }
+      p,font{
+        font-size:30px!important;
+        margin:auto!important
+      }
+      .fixed {
+        display:block;
+        width:100%;
+        text-align:center;
+        justify-content:center
+      }
+      .phone,.email,.social{
+        width:100%;
+      }
+      .email a {
+        border-bottom:1px solid gray;
+        border-top:1px solid gray;
+        padding:5px;
+      }
+    }
 
+    `}</style>
   <script src="static/js/three.r92.min.js"></script>
-  <script src="static/js/vanta.birds.min.js"></script>
   <div className="forward">
-    <p>
+    <p id="promotion" >
       <font style={{ color: "#FF3D17" }} >Merhaba;</font> Ben Fatih
       <br/>
       <Link href="/blog" >
@@ -39,10 +79,10 @@ const Home = ({ posts }) => (
     </div>
     <div className="social" >
       <ul className="social-icons">
-          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fa fa-google-plus"></i></a></li>
-          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fa fa-youtube"></i></a></li>
-          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fa fa-twitter"></i></a></li>
-          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fa fa-facebook"></i></a></li>
+          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fab fa-google"></i></a></li>
+          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fab fa-youtube"></i></a></li>
+          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fab fa-twitter"></i></a></li>
+          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fab fa-facebook"></i></a></li>
       </ul>
     </div>
   </div>

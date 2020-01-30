@@ -23,13 +23,14 @@ class MyFileUpload extends React.Component {
 
   async blogUpdate(){
      const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
+     const adminToken="af43c0445a680a18d52b648e1cb51c97";
      const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
 
      const imgName= this.state.image == null ? "" :this.state.image.name.toString().replace(/[^a-zA-Z0-9]/g, '')
          .replace('.jpg','.jpeg')
          .replace(' ','');
 
-     const pageRequestSelect = `${host}/api/db/update?tokenLocal=${tokenmd5}&que=blogUpdate&blog_title=${$('#blog_title').val()}&blog_description=${$('#blog_description').val()}&blog_author=${$('#blog_author').val()}&blog_issue=${$('#blog_issue').val()}&blog_pic=${this.state.image == null ? "":this.uniqueKey.toString() + imgName}&blog_id=${$('#tokenId').val()}`;
+     const pageRequestSelect = `${host}/api/db/update?tokenLocal=${tokenmd5}&adminToken=${adminToken}&que=blogUpdate&blog_title=${$('#blog_title').val()}&blog_description=${$('#blog_description').val()}&blog_author=${$('#blog_author').val()}&blog_issue=${$('#blog_issue').val()}&blog_pic=${this.state.image == null ? "":this.uniqueKey.toString() + imgName}&blog_id=${$('#tokenId').val()}`;
      console.log(pageRequestSelect);
      const resSelect = await fetch(pageRequestSelect);
      const jsonSelect = await resSelect.json();

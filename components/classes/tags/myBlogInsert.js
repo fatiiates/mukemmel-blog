@@ -22,11 +22,13 @@ class MyFileUpload extends React.Component {
 
   async blogInsert(){
      const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
+     const adminToken="af43c0445a680a18d52b648e1cb51c97";
+
      const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
      const imgName=this.state.image.name.toString().replace(/[^a-zA-Z0-9]/g, '')
      .replace('.jpg','.jpeg')
      .replace(' ','');
-     const pageRequestSelect = `${host}/api/db/insert?tokenLocal=${tokenmd5}&que=blogInsert&blog_title=${$('#blog_title').val()}&blog_description=${$('#blog_description').val()}&blog_author=${$('#blog_author').val()}&blog_issue=${$('#blog_issue').val()}&blog_pic=${this.uniqueKey.toString() + imgName}`;
+     const pageRequestSelect = `${host}/api/db/insert?tokenLocal=${tokenmd5}&adminToken=${adminToken}&que=blogInsert&blog_title=${$('#blog_title').val()}&blog_description=${$('#blog_description').val()}&blog_author=${$('#blog_author').val()}&blog_issue=${$('#blog_issue').val()}&blog_pic=${this.uniqueKey.toString() + imgName}`;
 
      const resSelect = await fetch(pageRequestSelect);
      const jsonSelect = await resSelect.json();

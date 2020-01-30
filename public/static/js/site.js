@@ -41,3 +41,12 @@ $(function(){
   });
 
 });
+
+//
+
+function closeMenu(el){
+  $('#div_nav').children('center').children('nav').children('ul').css({
+    'display':'none'
+  });
+  el.remove();
+}

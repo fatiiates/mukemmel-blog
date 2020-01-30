@@ -19,25 +19,38 @@ const more = [
 const Footer =  props => (
   <footer className="col-md-12">
     <div className="container col-md-12">
-    <style jsx >{`
-      .container {
+    <style jsx global>{`
+      footer .container {
+        transition:.5s;
         display:block;
       }
-      .end {
-        padding:0 10%;
+      #copyR {
+        margin-top:35px;
+        bottom:0;
       }
-      .end p {
-        width:100%;
+      @media screen and (max-width:1000px){
+        footer {
+          z-index:0!important;
+        }
+        footer .more {
+          border-right:none;
+          border-bottom: 1px solid rgba(255,255,255,.7);
+          padding-bottom:10px;
+        }
+        footer .contact {
+          padding-top:10px
+        }
       }
-      .end li {
-        justify-content:start;
+      @media screen and (max-width:1000px){
+        footer {
+          width:100%;
+          padding-left:0!important;
+          padding-right:0!important;
+        }
+        footer .container {
+          padding: 10px!important;
+        }
       }
-      .end a {
-        width:fit-content;
-        text-indent:0;
-        padding:0 20px;
-      }
-      
 
     `}</style>
       <div className="more col-md-6" >
@@ -51,22 +64,9 @@ const Footer =  props => (
           ))}</ul>
       </div>
       {props.children}
+      <div id="copyR" className="col-md-12" >Fatih ATEŞ  2019 - © Tüm Hakları Saklıdır  </div>
+     </div>
 
-      <div className="end col-md-12" >
-        <br/>
-        <hr/>
-        <center>
-          <p><font>Son</font> Eklenen Yazılar</p>
-        </center>
-          <ul>{more.map(({ key, href, label }) => (
-            <li key={key} >
-              &emsp;<a href={href} ><font>{label.substring(0,2)}</font>{label.substring(2)}</a>
-            </li>
-          ))}</ul>
-          <p className="col-md-12" style={{textAlign:"center",fontSize:"18px"}} >© Tüm hakları saklıdır. - 2020 </p>
-
-      </div>
-    </div>
   </footer>
 );
 

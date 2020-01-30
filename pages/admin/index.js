@@ -32,11 +32,12 @@ const Home = ({ posts }) => (
 
     </div>
     <script src="/static/js/jquery-1.10.2.js"></script>
-    <script src="/static/js/jquery.steps.min.js"></script>
-
     <script src="/static/js/bootstrap.js"></script>
     <script src="/static/js/jquery.metisMenu.js"></script>
+    <script src="/static/js/jquery.steps.min.js"></script>
     <script src="/static/js/custom.js"></script>
+    <script src="/static/js/bootstrap-fileupload.js"></script>
+
   </Layout>
 
 );

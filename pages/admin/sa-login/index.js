@@ -64,6 +64,9 @@ const Login = () => {
         .login-username,.login-password {
           width:auto;
         }
+        .error {
+          color:White;
+        }
       `}</style>
         <Head>
 

@@ -13,7 +13,7 @@ const About = ({ posts }) => (
 
     <Layout>
       <Header></Header>
-      <style jsx>{`
+      <style jsx global>{`
 
         .about {
           width:100%;
@@ -61,7 +61,39 @@ const About = ({ posts }) => (
           font-size:30px;
           color:black;
         }
+        @media screen and (max-width:620px){
+          .container, .about {
+            padding-right:0;
+            padding-left:0
+          }
+          .content {
+            margin-top:200px;
+            padding:20px;
 
+          }
+          .content .title {
+            padding:20px;
+            padding-bottom:0
+          }
+          .content .title, .content .title font, .content span {
+            font-size:30px;
+
+          }
+          .content .description{
+            font-size:20px;
+            
+
+          }
+          .content .img {
+            width:300px;
+            height:300px;
+            margin-top:-155px;
+          }
+          .content .img img{
+            width:300px!important;
+            height:405px
+          }
+        }
 
       `}</style>
       <div className="about nested-container col-md-9 ">

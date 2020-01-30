@@ -1,9 +1,10 @@
 import React from "react";
+import { logout } from '../../utils/auth'
 
 const Header = props => (
   <nav className="navbar navbar-default navbar-cls-top " role="navigation" style={{marginBottom:"0px"}}>
       <div className="navbar-header">
-          <button type="button" className="navbar-toggle" datatoggle="collapse" datatarget=".sidebar-collapse">
+          <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
               <span className="sr-only">Toggle navigation</span>
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
@@ -16,7 +17,7 @@ const Header = props => (
 
         <a href="#" className="btn btn-info" title="New Message"><b>30 </b><i className="fa fa-envelope fa-x"></i></a>
           <a href="#" className="btn btn-primary" title="New Task"><b>40 </b><i className="fa fa-bars fa-x"></i></a>
-          <a href="logout.js" className="btn btn-danger" title="Logout"><i className="fa fa-exclamation-circle fa-x"> </i>  Güvenli Çıkış</a>
+          <a onClick={logout} className="btn btn-danger" title="Logout"><i className="fa fa-exclamation-circle fa-x"> </i>  Güvenli Çıkış</a>
       </div>
   </nav>
 

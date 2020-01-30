@@ -19,7 +19,6 @@ const Contact = ({posts}) => (
         body {
           display: table;
           height:100%;
-
         }
         #__next .container {
           padding:0 15px ;
@@ -36,6 +35,9 @@ const Contact = ({posts}) => (
           position: fixed;
           top: 0;
 
+        }
+        #gradient {
+          right:5%;
         }
         .container {
           background:transparent;
@@ -71,25 +73,35 @@ const Contact = ({posts}) => (
           height:auto;
         }
         .builds .builds-content .builds-content-top a {
-          width:33.3333333333333333333333333333333%;
+          width:33%;
           display:inline-table;
           background:#f2f2f2;
           height:100%;
+        }
+        #social {
+          width:34%;
         }
         .builds .builds-content .builds-content-top .field {
           display:block;
         }
         .builds .builds-content .builds-content-top a {
           border-bottom:1px solid rgba(0,0,0,.1);
+        }
+        .builds .builds-content .builds-content-top #phone {
           border-right:1px solid rgba(0,0,0,.1);
-
+          border-left:1px solid rgba(0,0,0,.1);
+          z-index:2
         }
         .builds .builds-content .builds-content-top a {
           cursor:pointer;
+          height:120px;
+          justify-content: center;
+          align-items: center;
+          display: inline-flex;
         }
         .builds .builds-content .builds-content-top a .field p {
           margin:0;
-          padding:40px;
+
           font-family:Raleway-Regular;
           font-size:20px;
           color:black;
@@ -132,7 +144,25 @@ const Contact = ({posts}) => (
         footer {
           z-index:2;
         }
+        @media screen and (max-width:1000px){
+          .container {
+            width:100%;
+            padding:0!important;
+          }
+          .builds,.builds .container {
+            z-index:-1;
+            width:100%;
+            padding-left:0;
+            padding-right:0;
+          }
+          .builds-content {
+            width:100%;
+          }
 
+          #gradient {
+            z-index:2
+          }
+        }
 
 
     `}</style>

@@ -1,5 +1,6 @@
 const db = require('../../../../lib/db')
 const escape = require('sql-template-strings')
+const md5=require('md5');
 
 module.exports = async (req, res) => {
   const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
@@ -15,11 +16,9 @@ module.exports = async (req, res) => {
     const post=[""];
     switch (req.query.que) {
       case "userLogin":
-          if(req.query.adminToken == adminToken){
             const username=req.query.username.toString().replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
             const userpass=req.query.userpass.toString().replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
-            querySelect[0]=escape`SELECT COUNT(*) FROM users WHERE username=${username} AND userpass=${userpass} AND role='admin' ORDER BY id LIMIT ${(page - 1) * limit}, ${limit}`;
-          }
+            querySelect[0]=escape`SELECT COUNT(*) FROM users WHERE username=${md5(username)} AND userpass=${md5(userpass)} AND role='admin' LIMIT 0, 1`;
         break;
       case "blogPost":
          querySelect[0]=escape`SELECT * FROM blog_post where blog_id =${req.query.blog_id} LIMIT ${(page - 1) * limit}, ${limit}`;

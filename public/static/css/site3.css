@@ -65,6 +65,7 @@ header .headerBottom div {
   display: flex;
 
 }
+
 footer * {
   font-size: 20px;
   font-family: Raleway-Regular;
@@ -79,7 +80,7 @@ footer {
 
 }
 footer .container {
-  padding:100px 15%!important;
+  padding:100px 15%;
   height: auto;
   background: transparent;
   display: flex;
@@ -333,7 +334,6 @@ footer ul li p i {
 }
 
 .blog .description p {
-  overflow: hidden;
   font-size: 18px;
   line-height: 1.3;
    -webkit-box-orient: vertical;
@@ -364,6 +364,27 @@ footer ul li p i {
   font-size:16px;
   color:#7b0dff;
 }
+.go {
+  transition: .5s;
+  padding:10px;
+  padding-top:15px;
+  border-radius:10px;
+  width: 100%;
+
+}
+.go span,.go i{
+  font-size:20px;
+  color:#f76a88;
+}
+.go:hover {
+  background: #f76a88;
+  border-radius:10px;
+}
+.go:hover span,.go:hover i{
+  color:White!important;
+}
+
+
 
 
 .fa-social {
@@ -400,7 +421,7 @@ footer ul li p i {
     -moz-transition:.5s;
     -webkit-transition:.5s;
     transition: .5s;
-    background-color: #fff;
+    background-color: transparent;
 }
 .fa-twitter:hover {
     background-color: #00aced;
@@ -413,7 +434,7 @@ footer ul li p i {
     -moz-transition:.5s;
     -webkit-transition:.5s;
     transition: .5s;
-    background-color: #fff;
+    background-color: transparent;
 }
 .fa-youtube:hover {
     background-color: #e64a41;

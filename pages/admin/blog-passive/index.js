@@ -18,11 +18,13 @@ import getHost from '../../../utils/get-host'
 let key=1;
 
 const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
+const adminToken="af43c0445a680a18d52b648e1cb51c97";
 const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
 
 async function blogActive(el){
 
- const pageRequestSelect = `${host}/api/db/update?page=0&limit=1&blog_id=${el}&token=${tokenmd5}&que=blogPassiveToActive`;
+ const pageRequestSelect = `${host}/api/db/update?page=0&limit=1&blog_id=${el}&tokenLocal=${tokenmd5}&adminToken=${adminToken}&que=blogPassiveToActive`;
+ console.log(pageRequestSelect);
  const resSelect = await fetch(pageRequestSelect);
 
  const jsonSelect = await resSelect.json();
@@ -32,7 +34,7 @@ async function blogActive(el){
  }
  else {
    window.location="#error";
-   window.location.reload();
+   //window.location.reload();
  }
 }
 
@@ -226,7 +228,7 @@ Home.getInitialProps = async ctx => {
       const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
       const adminToken="af43c0445a680a18d52b648e1cb51c97";
       const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
-      const pageRequestSelect = `${host}/api/db/select?page=0&limit=0&token=${tokenmd5}&adminToken=${adminToken}&&que=blogsPassive`;
+      const pageRequestSelect = `${host}/api/db/select?page=0&limit=0&token=${tokenmd5}&adminToken=${adminToken}&que=blogsPassive`;
 
       const resSelect = await fetch(pageRequestSelect);
       const jsonSelect = await resSelect.json();
@@ -242,6 +244,5 @@ Home.getInitialProps = async ctx => {
   }
 
 };
-
 
 export default withAuthSync(Home);

@@ -18,9 +18,10 @@ let key=1;
 
 async function blogPassive(el){
  const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
+ const adminToken="af43c0445a680a18d52b648e1cb51c97";
  const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
 
- const pageRequestSelect = `${host}/api/db/update?page=0&limit=1&blog_id=${el}&tokenLocal=${tokenmd5}&que=blogActiveToPassive`;
+ const pageRequestSelect = `${host}/api/db/update?page=0&limit=1&blog_id=${el}&tokenLocal=${tokenmd5}&adminToken=${adminToken}&que=blogActiveToPassive`;
  const resSelect = await fetch(pageRequestSelect);
 
  const jsonSelect = await resSelect.json();

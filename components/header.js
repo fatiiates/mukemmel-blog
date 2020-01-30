@@ -1,33 +1,35 @@
 import React from "react";
 import Nav from "./nav.js";
 
+
+
 const Header = props => (
   <header className="col-md-12" >
   <div className="headerTop col-md-9">
     <div className="welcome col-md-6" ><img src="/static/img/king.png" height="50" width="50"/>Bloğuma hoşgeldin!</div>
     <div className="social col-md-6" >
       <ul className="social-icons" >
-      <style jsx>{`
+      <style jsx global>{`
         :global(header) {
           background: rgba(255,255,255,.2);
         }
-        li {
+        header li {
           float:right;
           list-style:none
         }
-        i {
+        header i {
           background:transparent;
           color:white;
           font-size:20px;
         }
-        .text {
+        header .text {
           font-size: 30px;
         }
-        .text_element--border-effect {
+        header .text_element--border-effect {
             transition: border-color .4s ease-in-out;
         }
 
-        .typed-cursor{
+        header .typed-cursor{
             opacity: 1;
             -webkit-animation: blink 0.7s infinite;
             -moz-animation: blink 0.7s infinite;
@@ -49,17 +51,30 @@ const Header = props => (
             50% { opacity:0; }
             100% { opacity:1; }
         }
+        @media screen and (max-width:1350px){
+          .headerBottom * {
+            font-size:20px!important
+          }
+          center .text {
+            text-align:left
+          }
+        }
+        @media screen and (max-width:1200px){
+          #div_text {
+            width:60%;
+          }
+        }
 
       `}</style>
           <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fab fa-google"></i></a></li>
           <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fab fa-youtube"></i></a></li>
-          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fab fa-twitter"></i></a></li>
+          <li><a target="_blank" href="//google1.com" className="social-icon"> <i className="fab fa-twitter"></i></a></li>
           <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fab fa-facebook"></i></a></li>
       </ul>
     </div>
   </div>
   <div className="headerBottom col-md-12" >
-    <div className="col-md-12"  style={{padding:"15px",fontSize:"25px"}}>
+    <div id="div_text" className="col-md-12"  style={{padding:"15px",fontSize:"25px"}}>
       <style jsx>{`
         * {
           font-size:30px;
@@ -70,7 +85,7 @@ const Header = props => (
         <p className="text"><span className="text_element text_element--border-effect"> </span> </p>
       </center>
     </div>
-    <div className="col-md-12" >
+    <div id="div_nav" className="col-md-12" >
       <center>
         <Nav/>
       </center>
@@ -78,9 +93,9 @@ const Header = props => (
     {props.children}
   </div>
 
-
-  <script type="text/javascript" src="https://cdn.bootcss.com/typed.js/1.1.7/typed.min.js"></script>
+  <script type="text/javascript" src="/static/js/typed.min.js"></script>
   <script type="text/javascript" src="/static/js/typed-effect.js"></script>
+  <script type="text/javascript" src="/static/js/site.js"></script>
 
   </header>
 
