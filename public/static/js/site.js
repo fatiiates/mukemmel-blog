@@ -43,6 +43,9 @@ $(function(){
 });
 
 //
+$(document).ready(function (){
+  $('#preloader').remove();
+})
 
 function closeMenu(el){
   $('#div_nav').children('center').children('nav').children('ul').css({

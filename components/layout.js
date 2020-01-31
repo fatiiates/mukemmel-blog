@@ -5,6 +5,9 @@ import Head from "./head";
 const Layout = props => (
 /*linear-gradient(135deg, rgba(164,67,230,1) 20%, rgba(252,69,94,1) 50%, rgba(215,184,19,1) 80%)*/
   <div className="container col-md-12">
+  <div id="preloader">
+    <div id="loader"></div>
+  </div>
     <style jsx global>{`
       .container {
         display:block;
