@@ -30,7 +30,6 @@ const Home = ({ posts }) => (
         height:100%;
         justify-content:center;
         align-items:center;
-        display:flex;
         padding:0
       }
       .forward p a {
@@ -68,7 +67,7 @@ const Home = ({ posts }) => (
     <p id="promotion" >
       <font style={{ color: "#FF3D17" }} >Merhaba;</font> Ben Fatih
       <br/>
-      <Link href="/blog" >
+      <Link href={process.env.NODE_ENV === "development" ? "//localhost:3000/blog":"//www.mukemmellblog.herokuapp.com/blog"} >
           <a style={{marginTop:"-100px"}} className="hvr-bounce-to-right" >Bloğa ilerle</a>
       </Link>
     </p>
