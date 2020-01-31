@@ -5,6 +5,7 @@ const md5=require('md5');
 module.exports = async (req, res) => {
   const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
   const adminToken="af43c0445a680a18d52b648e1cb51c97";
+  
   if(tokenmd5 == req.query.token){
     var page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 9;
@@ -16,7 +17,7 @@ module.exports = async (req, res) => {
     const post=[""];
     switch (req.query.que) {
       case "pagination":
-         querySelect[0]=escape`SELECT COUNT(*) FROM blog_post`;
+         querySelect[0]=escape`SELECT COUNT(*) FROM blog_post WHERE blog_publish=1`;
         break;
       case "userLogin":
             const username=req.query.username.toString().replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
@@ -25,6 +26,12 @@ module.exports = async (req, res) => {
         break;
       case "blogPost":
          querySelect[0]=escape`SELECT * FROM blog_post where blog_id =${req.query.blog_id} LIMIT ${(page - 1) * limit}, ${limit}`;
+        break;
+      case "paginationIssue":
+          querySelect[0]=escape`SELECT COUNT(*) FROM blog_post where (blog_issue LIKE ${req.query.blog_issue}) AND blog_publish=1 `;
+        break;
+      case "blogIssue":
+        querySelect[0]=escape`SELECT * FROM blog_post where (blog_issue LIKE ${req.query.blog_issue}) AND blog_publish=1 ORDER BY blog_id desc LIMIT ${(page - 1) * limit}, ${limit}`;
         break;
       case "blogsActive":
           querySelect[0]=escape`SELECT * FROM blog_post where blog_publish=1 ORDER BY blog_id desc LIMIT ${(page - 1) * limit}, ${limit}`;

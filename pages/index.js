@@ -61,14 +61,14 @@ const Home = ({ posts }) => (
       <font style={{ color: "#FF3D17" }} >Merhaba;</font> Ben Fatih
       <br/>
       <Link href="/blog" >
-          <a className="hvr-bounce-to-right" >Bloğa ilerle {process.env.customKey}</a>
+          <a className="hvr-bounce-to-right" >Bloğa ilerle</a>
       </Link>
     </p>
 
   </div>
   <div className="fixed"  >
     <div className="phone" >
-      <Link href="//phone:+905444735349">
+      <Link>
         <a>+90 544 473 5349</a>
       </Link>
     </div>
@@ -79,10 +79,10 @@ const Home = ({ posts }) => (
     </div>
     <div className="social" >
       <ul className="social-icons">
-          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fab fa-google"></i></a></li>
-          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fab fa-youtube"></i></a></li>
-          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fab fa-twitter"></i></a></li>
-          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fab fa-facebook"></i></a></li>
+          <li><a target="_blank" href="https://www.linkedin.com/in/fatiiates/" className="social-icon"> <i className="fab fa-linkedin"></i></a></li>
+          <li><a target="_blank" href="https://www.twitter.com/fatiiates" className="social-icon"> <i className="fab fa-twitter"></i></a></li>
+          <li><a target="_blank" href="https://www.instagram.com/fatiiates" className="social-icon"> <i className="fab fa-instagram"></i></a></li>
+          <li><a target="_blank" href="https://www.facebook.com/fatiiates" className="social-icon"> <i className="fab fa-facebook"></i></a></li>
       </ul>
     </div>
   </div>

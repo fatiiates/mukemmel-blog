@@ -111,6 +111,9 @@ const BlogPost = ({ posts, postsSelect, error }) => (
             font-size:20px;
             word-break:break-word
           }
+          .issue {
+            z-index:0;
+          }
         }
         @media screen and (max-width:700px){
           .nested-container {
@@ -156,7 +159,7 @@ const BlogPost = ({ posts, postsSelect, error }) => (
           {error == "none" && createViewCookie(prop.blog_id*1580246913975308624)}
             <img className="img col-md-12" src={prop.blog_src} />
             <div key={keys++} className="blog" style={{padding:"1px!important"}}>
-              <div className="issue col-md-12 " ><a href="l" className="shake">{prop.blog_issue}</a></div>
+              <div className="issue col-md-12 " ><a href={`/blog/issue/${prop.blog_issue}`} className="shake">{prop.blog_issue}</a></div>
             </div>
             <div key={keys++} className="blog blog-info col-md-12 " >
               <div className="info col-md-12 " >

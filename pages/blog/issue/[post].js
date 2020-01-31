@@ -2,9 +2,9 @@ import React from "react";
 import fetch from "isomorphic-unfetch";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-import Layout from "../../components/layout";
-import Header from "../../components/header";
-import Footer from "../../components/footer";
+import Layout from "../../../components/layout";
+import Header from "../../../components/header";
+import Footer from "../../../components/footer";
 
 let keys=1,pagi;
 var loop=0;
@@ -177,8 +177,9 @@ Blog.getInitialProps = async ({ req,query }) => {
   const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
 
   const resRequest=`${host}/api/contactPost`;
-  const pageRequestSelect = `${host}/api/db/select?page=${page}&limit=9&token=${tokenmd5}&que=blogsActive`;
-  const pagiRequest=`${host}/api/db/select?page=${page}&limit=1&token=${tokenmd5}&que=pagination`;
+  const pageRequestSelect = `${host}/api/db/select?page=${page}&limit=9&token=${tokenmd5}&que=blogIssue&blog_issue=%${query.post}%`;
+  console.log(pageRequestSelect);
+  const pagiRequest=`${host}/api/db/select?page=${page}&limit=1&token=${tokenmd5}&que=paginationIssue&blog_issue=%${query.post}%`;
 
   const res= await fetch(resRequest);
   const resSelect = await fetch(pageRequestSelect);
