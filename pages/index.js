@@ -67,7 +67,7 @@ const Home = ({ posts }) => (
     <p id="promotion" >
       <font style={{ color: "#FF3D17" }} >Merhaba;</font> Ben Fatih
       <br/>
-      <Link href={process.env.NODE_ENV === "development" ? "//localhost:3000/blog":"//www.mukemmellblog.herokuapp.com/blog"} >
+      <Link href={process.env.NODE_ENV === "development" ? "//localhost:3000/blog":"//mukemmellblog.herokuapp.com/blog"} >
           <a style={{marginTop:"-100px"}} className="hvr-bounce-to-right" >Bloğa ilerle</a>
       </Link>
     </p>
