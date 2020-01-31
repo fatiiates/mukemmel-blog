@@ -134,14 +134,14 @@ const Blog = ({ posts, postsSelect, pagi, error }) => {
       </div>
       { error == "none" && pagi.map(post =>(
         <div key={++keys} className="pagination" >
-              <Link href="/blog?page=1" >
+              <Link href={process.env.NODE_ENV === "development" ? "//localhost:3000/blog?page=1" : "//mukemmellblog.herokuapp.com/blog?page=1"} >
                 <a className="pagi-first" > 1 </a>
               </Link>
-            {post.pre != 0 &&  <Link href={`/blog?page=${post.pre}`} >
+            {post.pre != 0 &&  <Link href={process.env.NODE_ENV === "development" ? `//localhost:3000/blog?page=${post.pre}` : `//mukemmellblog.herokuapp.com/blog?page=${post.pre}`} >
                 <a className="pagi-pre" >&lt; Geri</a>
               </Link>
             }
-            {post.next != 0 &&  <Link href={`/blog?page=${post.next}`} >
+            {post.next != 0 &&  <Link href={process.env.NODE_ENV === "development" ? `//localhost:3000/blog?page=${post.next}` : `//mukemmellblog.herokuapp.com/blog?page=${post.next}`} >
                 <a className="pagi-next" >İleri &gt;</a>
               </Link>
             }

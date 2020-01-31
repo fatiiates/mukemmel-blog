@@ -23,7 +23,7 @@ const heights = [
 const divKey = [1,2,3,4,5,6];
 
 
-const Blog = ({ posts, postsSelect, pagi, error }) => {
+const Blog = ({ posts, postsSelect, pagi, posted, error }) => {
 
   return (
     <Layout>
@@ -134,17 +134,17 @@ const Blog = ({ posts, postsSelect, pagi, error }) => {
       </div>
       { error == "none" && pagi.map(post =>(
         <div key={++keys} className="pagination" >
-              <Link href="/blog?page=1" >
-                <a className="pagi-first" > 1 </a>
-              </Link>
-            {post.pre != 0 &&  <Link href={`/blog?page=${post.pre}`} >
-                <a className="pagi-pre" >&lt; Geri</a>
-              </Link>
-            }
-            {post.next != 0 &&  <Link href={`/blog?page=${post.next}`} >
-                <a className="pagi-next" >İleri &gt;</a>
-              </Link>
-            }
+            <Link href={process.env.NODE_ENV === "development" ? `//localhost:3000/blog/issue/${posted}?page=1` : `//mukemmellblog.herokuapp.com/blog/issue/${posted}?page=1`} >
+              <a className="pagi-first" > 1 </a>
+            </Link>
+          {post.pre != 0 &&  <Link href={process.env.NODE_ENV === "development" ? `//localhost:3000/blog/issue/${posted}?page=${post.pre}` : `//mukemmellblog.herokuapp.com/blog/issue/${posted}?page=${post.pre}`} >
+              <a className="pagi-pre" >&lt; Geri</a>
+            </Link>
+          }
+          {post.next != 0 &&  <Link href={process.env.NODE_ENV === "development" ? `//localhost:3000/blog/issue/${posted}?page=${post.next}` : `//mukemmellblog.herokuapp.com/blog/issue/${posted}?page=${post.next}`} >
+              <a className="pagi-next" >İleri &gt;</a>
+            </Link>
+          }
         </div>
       ))
 
@@ -173,7 +173,7 @@ Blog.getInitialProps = async ({ req,query }) => {
   // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
   const page =query.page || 1;
   const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
-
+  const posted=query.post;
   const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
 
   const resRequest=`${host}/api/contactPost`;
@@ -197,7 +197,7 @@ Blog.getInitialProps = async ({ req,query }) => {
   });
 
   if(page < 1 || page > maxPagi)
-    return { posts: json.posts ,postsSelect:jsonSelect.posts, pagi:pagiJson.posts , error:'Bu sayfa Bulunamadı!' }
+    return { posts: json.posts ,postsSelect:jsonSelect.posts, pagi:pagiJson.posts, posted:posted , error:'Bu sayfa Bulunamadı!' }
 
 
 
@@ -212,7 +212,7 @@ Blog.getInitialProps = async ({ req,query }) => {
     return add;
   })
 
-  return { posts: json.posts ,postsSelect:jsonSelect.posts, pagi:pagiJson.posts, error:'none'};
+  return { posts: json.posts ,postsSelect:jsonSelect.posts, pagi:pagiJson.posts, posted:posted, error:'none'};
 
 };
 

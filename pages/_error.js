@@ -1,10 +1,15 @@
-import Layout from '../components/layout'
+import Head from '../components/head'
 
 const Error = () =>{
   return (
-    <Layout>
+    <div id="container" >
+    <Head/>
       <style jsx global>{`
         #__next {
+          width:100%;
+          height:100%;
+        }
+        #container{
           width:100%;
           height:100%;
         }
@@ -31,15 +36,15 @@ const Error = () =>{
 
       `}</style>
       <div className="container col-md-12" >
-        <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55" style={{background:"rgba(255,255,255,.9)"}}>
+        <div className="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55" style={{background:"rgba(255,255,255,.9)"}}>
           <p >Ooooops! <br/> Bir şeyler ters gitti <br/> Dolayısıyla;</p>
           <img src="/static/img/yer.png" alt="" height="300px" width="300px"/>
-          <div class="col-md-12">
-            <a class="back btn btn-danger" href="javascript:history.back();">GERİ DÖN</a>
+          <div className="col-md-12">
+            <a className="back btn btn-danger" href="javascript:history.back();">GERİ DÖN</a>
           </div>
         </div>
       </div>
-    </Layout>
+    </div>
   )
 }
 
