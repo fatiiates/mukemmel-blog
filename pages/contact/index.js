@@ -13,7 +13,7 @@ const Contact = ({posts}) => (
   <Layout>
     <Head/>
     <Header>
-      <input id="gradient" className="toggle" type="checkbox" defaultChecked/>
+    <input id="gradient" className="toggle" type="checkbox" defaultChecked/>
     </Header>
     <style jsx global>{`
         body {
@@ -21,7 +21,10 @@ const Contact = ({posts}) => (
           height:100%;
         }
         #__next .container {
-          padding:0 15px ;
+          padding:0 15px;
+        }
+        footer .container {
+          padding:100px 15%!important;
         }
         canvas {
           background:
@@ -191,7 +194,7 @@ const Contact = ({posts}) => (
 
             <div htmlFor={post.slug} key={post.id} className={post.slug == "e-mail" ? "builds-content-bottom" : "builds-content-bottom passive" } style={{zIndex:3-post.id}} >
             {(post.title).map(nestedPost => (
-              post.slug == "social" ? <a key={nestedPost.id} href={nestedPost.content} className={"fab fa-social "+nestedPost.class} ></a> : <p key={nestedPost.id} className="builds-description" >{nestedPost.content}</p>
+              post.slug == "social" ? <a target="_blank" key={nestedPost.id} href={nestedPost.content} className={"fab fa-social "+nestedPost.class} ></a> : <p key={nestedPost.id} className="builds-description" >{nestedPost.content}</p>
 
             ))}
             </div>
@@ -208,7 +211,7 @@ const Contact = ({posts}) => (
       {posts.map(post =>  (
         <li key={post.slug}>
         {(post.title).map(nestedPost => (
-          post.slug == "social" ? <a key={nestedPost.id} href={nestedPost.content} className={"fab fa-social "+nestedPost.class} ></a> : <p key={nestedPost.id} ><i className={"fa "+nestedPost.class} ></i>{nestedPost.content}</p>
+          post.slug == "social" ? <a target="_blank" key={nestedPost.id} href={nestedPost.content} className={"fab fa-social "+nestedPost.class} ></a> : <p key={nestedPost.id} ><i className={"fa "+nestedPost.class} ></i>{nestedPost.content}</p>
         ))}
         </li>
       ))}
@@ -224,12 +227,10 @@ const Contact = ({posts}) => (
 );
 
 Contact.getInitialProps = async ({ req }) => {
-  // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
-  /*if(process.env.NODE_ENV === "development")*/
-    const res= await fetch("http://localhost:3000/api/contactPost");
-  /*else if (process.env.NODE_ENV === "production")
-    const res= await fetch("http://mukemmellblog.herokuapp.com/api/posts/contact");*/
 
+  const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
+  const resRequest=`${host}/api/contactPost`;
+  const res= await fetch(resRequest);
   const json = await res.json();
   return { posts: json.posts };
 

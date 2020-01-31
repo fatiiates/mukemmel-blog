@@ -5,7 +5,7 @@ import cookie from 'js-cookie'
 
 export const login = ({ token }) => {
   cookie.set('token', token, { expires: 1 })
-  console.log("token tamam");
+  console.log("token success");
   Router.push('/admin')
 }
 

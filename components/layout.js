@@ -3,16 +3,18 @@ import Head from "./head";
 
 
 const Layout = props => (
-
+/*linear-gradient(135deg, rgba(164,67,230,1) 20%, rgba(252,69,94,1) 50%, rgba(215,184,19,1) 80%)*/
   <div className="container col-md-12">
     <style jsx global>{`
       .container {
         display:block;
-        background:linear-gradient(135deg, rgba(164,67,230,1) 20%, rgba(252,69,94,1) 50%, rgba(215,184,19,1) 80%);
+        background:linear-gradient(135deg, rgba(44,168,212,1) 20%, rgba(252,69,94,1) 50%, rgba(215,184,19,1) 80%);
       }
       @media screen and (max-width:1000px){
         body,.container {
           width:100%;
+          padding-left:0;
+          padding-right:0;
         }
         header {
           padding:0!important;

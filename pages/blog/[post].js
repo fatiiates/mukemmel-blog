@@ -5,6 +5,8 @@ import ReactMarkdown from "react-markdown";
 import Layout from "../../components/layout";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import nextCookie from 'next-cookies'
+import cookie from 'js-cookie'
 
 let keys=1;
 
@@ -15,14 +17,20 @@ const heights = [
 ].map(add => {
   add.key = `blog-content-${keys++}`;
   return add;
-});;
+});
+
+function createViewCookie(id){
+  console.log(id);
+  if(cookie.get(id) == undefined)
+    cookie.set(id,"1");
+}
 
 
-const BlogPost = ({ posts, postsSelect }) => (
+const BlogPost = ({ posts, postsSelect, error }) => (
 
     <Layout>
       <Header></Header>
-      <style jsx>{`
+      <style jsx global>{`
 
         .blog-container {
           height:calc(100%);
@@ -31,9 +39,10 @@ const BlogPost = ({ posts, postsSelect }) => (
           padding:100px 0;
           justify-content:center;
           display:block;
+          transition:.5s
         }
         .blog-content {
-          padding:55px 85px;
+          padding:85px;
           background:White;
           border-radius:20px;
           display:block;
@@ -78,19 +87,78 @@ const BlogPost = ({ posts, postsSelect }) => (
           font-family:Raleway-Regular;
           font-weight:bold;
         }
+        .blog .issue {
+          margin-top:-22px
+        }
+        .error {
+          color:White;
+          font-size:35px;
+          font-weight:Bold;
+        }
+        @media screen and (max-width:1200px){
+          .blog-container {
+            width:90%
+          }
+          .blog-content .img {
+            width:100%;
+          }
+          .title {
+            font-size:30px;
+            padding-bottom:25px;
+            word-break:break-word
+          }
+          .description {
+            font-size:20px;
+            word-break:break-word
+          }
+        }
+        @media screen and (max-width:700px){
+          .nested-container {
+            padding-left:0 !important;
+            padding-right:0 !important;
+          }
+          .blog-container {
+            width:100%!important;
+          }
+          .blog-content{
+            padding:20px;
+            padding-bottom:35px
+          }
+          .blog-content .img {
+            padding:15px;
+            padding-bottom:0
+          }
+          .blog-info {
+            width:100%;
+            padding-bottom:0!important;
+          }
+          .info {
+            display:block!important;
+          }
+          .data,.author{
+            width:100%;
+            border-right:none!important;
+            padding:0!important;
+          }
+          .data:first-child {
+            padding-left:15px!important
+          }
+        }
 
       `}</style>
 
       <div className="nested-container col-md-12 ">
         <div className="blog-container col-md-8" >
-        {postsSelect.map(prop => (
-          <div className="blog-content col-md-12" >
 
+        {error != "none" && <p className="error">{error}</p>}
+        {error == "none" && postsSelect.map(prop => (
+          <div key={keys++} className="blog-content col-md-12" >
+          {error == "none" && createViewCookie(prop.blog_id*1580246913975308624)}
             <img className="img col-md-12" src={prop.blog_src} />
-            <div className="blog" style={{padding:"1px!important"}}>
+            <div key={keys++} className="blog" style={{padding:"1px!important"}}>
               <div className="issue col-md-12 " ><a href="l" className="shake">{prop.blog_issue}</a></div>
             </div>
-            <div className="blog col-md-12 " >
+            <div key={keys++} className="blog blog-info col-md-12 " >
               <div className="info col-md-12 " >
                 <p className="data" ><i className="fas fa-calendar" ></i>&nbsp;{prop.blog_inDate}&emsp;</p>
                 <a className="author" ><i className="fas fa-pencil-alt" ></i>&nbsp;{prop.blog_author}</a>
@@ -98,60 +166,24 @@ const BlogPost = ({ posts, postsSelect }) => (
               </div>
 
             </div>
-            <div className="title col-md-12" >
+            <div key={keys++} className="title col-md-12" >
               {prop.blog_title}
             </div>
-            <div className="description col-md-12" >
-              {prop.blog_description}
+            <div key={keys++} className="description col-md-12"
+            dangerouslySetInnerHTML={{
+                __html: prop.blog_description
+              }}
+            >
             </div>
 
 
           </div>
           ))}
-          <div className="blog-content col-md-12" >
-          <div className="title col-md-12" >
-            Konu hakkında bana buradan mail atabilirsiniz...
-          </div>
-            <div className="col-md-6" >
-              <span className="login100-form-title txt1 p-b-11">
-                E-mail
-              </span>
-              <div className="wrap-input100 validate-input m-b-36" datavalidate = "E-posta girilmelidir.">
-                <input className="input100" type="text" name="info_mail" />
-                <span className="focus-input100"></span>
-              </div>
-            </div>
-            <div className="col-md-6" >
-              <span className="login100-form-title txt1 p-b-11">
-                Ad Soyad
-              </span>
-              <div className="wrap-input100 validate-input m-b-36" datavalidate = "E-posta girilmelidir.">
-                <input className="input100" type="text" name="info_name" />
-                <span className="focus-input100"></span>
-              </div>
-            </div>
-            <div className="col-md-6" >
-              <span className="login100-form-title txt1 p-b-11">
-                Eklemek istedikleriniz
-              </span>
-              <div className="wrap-input100 validate-input m-b-36" datavalidate = "E-posta girilmelidir.">
-                <textarea maxlength="500" rows="8" className="input100" type="text" name="info_add" style={{height:"auto"}}></textarea>
-                <span className="focus-input100"></span>
-              </div>
-            </div>
-            <div className="col-md-6" >
-              <div className="container-login100-form-btn m-t-25">
-                <button  type="submit"  className="login100-form-btn" name="ogrenci_login">
-                  Giriş Yap
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
       <Footer>
-      <div className="contact col-md-6" >
+      <div key={keys++} className="contact col-md-6" >
         <center>
           <p><font>Ba</font>na ulaşın</p>
         </center>
@@ -159,7 +191,7 @@ const BlogPost = ({ posts, postsSelect }) => (
         {posts.map(post =>  (
           <li key={post.slug}>
           {(post.title).map(nestedPost => (
-            post.slug == "social" ? <a key={nestedPost.id} href={nestedPost.content} className={"fab fa-social "+nestedPost.class} ></a> : <p key={nestedPost.id} ><i className={"fa "+nestedPost.class} ></i>{nestedPost.content}</p>
+            post.slug == "social" ? <a target="_blank" key={nestedPost.id} href={nestedPost.content} className={"fab fa-social "+nestedPost.class} ></a> : <p key={nestedPost.id} ><i className={"fa "+nestedPost.class} ></i>{nestedPost.content}</p>
           ))}
           </li>
         ))}
@@ -170,22 +202,31 @@ const BlogPost = ({ posts, postsSelect }) => (
 
 );
 
-BlogPost.getInitialProps = async ({ req,query }) => {
-  // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
+BlogPost.getInitialProps = async ctx => {
     const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
-
     const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
-    const id=query.post / 1580246913975308624 ;
+    const reqId=ctx.query.post || -1;
+    const id=reqId / 1580246913975308624 ;
+
+    const cta = nextCookie(ctx);
+    if(cta[reqId] != "1" && reqId >= 1580246913975308624){
+      const viewRequest= `${host}/api/db/update?page=0&limit=1&tokenLocal=${tokenmd5}&que=viewPlus&blog_id=${id}`;
+      const viewRes=await fetch(viewRequest);
+    }
+
     const resRequest=`${host}/api/contactPost`;
     const pageRequestSelect = `${host}/api/db/select?page=0&limit=1&token=${tokenmd5}&que=blogPost&blog_id=${id}`;
 
     const res= await fetch(resRequest);
     const resSelect = await fetch(pageRequestSelect);
+
     const json = await res.json();
     const jsonSelect = await resSelect.json();
 
-  return { posts: json.posts ,postsSelect:jsonSelect.posts};
+    if(reqId < 1580246913975308624 || jsonSelect.posts[0] == undefined)
+      return { posts: json.posts, postsSelect:jsonSelect.posts, error: 'Bu sayfa bulunamadı!'};
 
+  return { posts: json.posts, postsSelect:jsonSelect.posts, error:"none"};
 };
 
 export default BlogPost;

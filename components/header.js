@@ -8,7 +8,7 @@ const Header = props => (
   <div className="headerTop col-md-9">
     <div className="welcome col-md-6" ><img src="/static/img/king.png" height="50" width="50"/>Bloğuma hoşgeldin!</div>
     <div className="social col-md-6" >
-      <ul className="social-icons" >
+      <ul className="social-icons">
       <style jsx global>{`
         :global(header) {
           background: rgba(255,255,255,.2);
@@ -66,10 +66,10 @@ const Header = props => (
         }
 
       `}</style>
-          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fab fa-google"></i></a></li>
-          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fab fa-youtube"></i></a></li>
-          <li><a target="_blank" href="//google1.com" className="social-icon"> <i className="fab fa-twitter"></i></a></li>
-          <li><a target="_blank" href="//google.com" className="social-icon"> <i className="fab fa-facebook"></i></a></li>
+          <li><a target="_blank" href="https://www.instagram.com/fatiiates" className="social-icon"> <i className="fab fa-instagram"></i></a></li>
+          <li><a target="_blank" href="https://www.linkedin.com/in/fatiiates/" className="social-icon"> <i className="fab fa-linkedin"></i></a></li>
+          <li><a target="_blank" href="https://twitter.com/fatiiates" className="social-icon"> <i className="fab fa-twitter"></i></a></li>
+          <li><a target="_blank" href="https://facebook.com/fatiiates" className="social-icon"> <i className="fab fa-facebook"></i></a></li>
       </ul>
     </div>
   </div>

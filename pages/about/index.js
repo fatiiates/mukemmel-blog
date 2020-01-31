@@ -81,7 +81,7 @@ const About = ({ posts }) => (
           }
           .content .description{
             font-size:20px;
-            
+
 
           }
           .content .img {
@@ -131,7 +131,7 @@ const About = ({ posts }) => (
         {posts.map(post =>  (
           <li key={post.slug}>
           {(post.title).map(nestedPost => (
-            post.slug == "social" ? <a key={nestedPost.id} href={nestedPost.content} className={"fab fa-social "+nestedPost.class} ></a> : <p key={nestedPost.id} ><i className={"fa "+nestedPost.class} ></i>{nestedPost.content}</p>
+            post.slug == "social" ? <a target="_blank"  key={nestedPost.id} href={nestedPost.content} className={"fab fa-social "+nestedPost.class} ></a> : <p key={nestedPost.id} ><i className={"fa "+nestedPost.class} ></i>{nestedPost.content}</p>
           ))}
           </li>
         ))}
@@ -143,11 +143,10 @@ const About = ({ posts }) => (
 );
 
 About.getInitialProps = async ({ req }) => {
-  // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
-  /*if(process.env.NODE_ENV === "development")*/
-    const res= await fetch("http://localhost:3000/api/contactPost");
-  /*else if (process.env.NODE_ENV === "production")
-    const res= await fetch("http://mukemmellblog.herokuapp.com/api/posts/contact");*/
+
+  const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
+  const resRequest=`${host}/api/contactPost`;
+  const res= await fetch(resRequest);
   const json = await res.json();
   return { posts: json.posts };
 

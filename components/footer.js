@@ -7,7 +7,6 @@ const more = [
   {href:"/contact", label: 'İletişim' },
   {href:"/blog", label: 'Blog' },
   {href:"/about", label: 'Ben Kimim ?' },
-  {href:"/reference", label: 'Referans Projeler' },
   {href:"/sitemap", label: 'Site Haritası' }
 
 ].map(add => {

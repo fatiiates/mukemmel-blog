@@ -6,7 +6,6 @@ const md5=require('md5');
 module.exports = async (req, res) => {
   const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
   const adminToken="af43c0445a680a18d52b648e1cb51c97";
-
   if(tokenmd5 == req.query.tokenLocal){
 
     function imgCreateLink(imgLink){
@@ -17,7 +16,11 @@ module.exports = async (req, res) => {
     const querySelect=[""];//Sonradan değişebilmek için ilk değer veriyorum diziye
     const post=[""];
     switch (req.query.que) {
-
+      case "viewPlus":
+        const blog = await db.query(escape`SELECT blog_views FROM blog_post where blog_id=${req.query.blog_id} LIMIT 0,1`);
+        if(blog[0] != undefined)
+          querySelect[0]=escape`UPDATE blog_post set blog_views = ${parseInt(blog[0].blog_views)+1} where blog_id=${req.query.blog_id}`
+        break;
       case "blogUpdate":
         if(req.query.adminToken == adminToken)
             if(req.query.blog_pic == "")

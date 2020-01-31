@@ -15,6 +15,9 @@ module.exports = async (req, res) => {
     const querySelect=[""];//Sonradan değişebilmek için ilk değer veriyorum diziye
     const post=[""];
     switch (req.query.que) {
+      case "pagination":
+         querySelect[0]=escape`SELECT COUNT(*) FROM blog_post`;
+        break;
       case "userLogin":
             const username=req.query.username.toString().replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
             const userpass=req.query.userpass.toString().replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');

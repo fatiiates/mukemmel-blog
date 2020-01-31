@@ -23,7 +23,7 @@ const heights = [
 const divKey = [1,2,3,4,5,6];
 
 
-const Blog = ({ posts, postsSelect, pagi }) => {
+const Blog = ({ posts, postsSelect, pagi, error }) => {
 
   return (
     <Layout>
@@ -44,6 +44,7 @@ const Blog = ({ posts, postsSelect, pagi }) => {
           display:flex;
           justify-content:center;
           width:100%;
+          margin:0;
         }
         .pagination a {
           color:white;
@@ -58,8 +59,12 @@ const Blog = ({ posts, postsSelect, pagi }) => {
         .pagination a:hover{
           cursor:pointer;
           background:white;
-          border-radius:20px;
           color:#f76a88;
+        }
+        .error {
+          color:White;
+          font-size:35px;
+          font-weight:Bold;
         }
         @media screen and (max-width:1300px){
           .blog-content {
@@ -98,8 +103,8 @@ const Blog = ({ posts, postsSelect, pagi }) => {
       `}</style>
       <div key={`div_${divKey[keys]}`} className="nested-container col-md-12 ">
         <div className="blog-container col-md-10" >
-
-        {postsSelect.map(prop => (
+        {error != "none" && <p className="error">{error}</p>}
+        { error == "none" && postsSelect.map(prop => (
 
             <div key={prop.key} className={`blog-content col-md-4 ${prop.class}`}  style={{marginTop:prop.margin}} >
               <div className="blog col-md-11" >
@@ -127,17 +132,23 @@ const Blog = ({ posts, postsSelect, pagi }) => {
       }
         </div>
       </div>
-      <div key={++keys} className="pagination" >
-            <Link href="?page=1" >
-              <a className="pagi-first" > 1 </a>
-            </Link>
-            <Link href="?page" >
-              <a className="pagi-pre" >&lt; Geri</a>
-            </Link>
-            <Link href="/blog/1" >
-              <a className="pagi-next" >İleri &gt;</a>
-            </Link>
-      </div>
+      { error == "none" && pagi.map(post =>(
+        <div key={++keys} className="pagination" >
+              <Link href="/blog?page=1" >
+                <a className="pagi-first" > 1 </a>
+              </Link>
+            {post.pre != 0 &&  <Link href={`/blog?page=${post.pre}`} >
+                <a className="pagi-pre" >&lt; Geri</a>
+              </Link>
+            }
+            {post.next != 0 &&  <Link href={`/blog?page=${post.next}`} >
+                <a className="pagi-next" >İleri &gt;</a>
+              </Link>
+            }
+        </div>
+      ))
+
+      }
       <Footer>
       <div key={`div_${divKey[++keys]}`} className="contact col-md-6" >
         <center>
@@ -147,7 +158,7 @@ const Blog = ({ posts, postsSelect, pagi }) => {
         {posts.map(post =>  (
           <li key={post.slug}>
           {(post.title).map(nestedPost => (
-            post.slug == "social" ? <a key={nestedPost.id} href={nestedPost.content} className={"fab fa-social "+nestedPost.class} ></a> : <p key={nestedPost.id} ><i className={"fa "+nestedPost.class} ></i>{nestedPost.content}</p>
+            post.slug == "social" ? <a target="_blank" key={nestedPost.id} href={nestedPost.content} className={"fab fa-social "+nestedPost.class} ></a> : <p key={nestedPost.id} ><i className={"fa "+nestedPost.class} ></i>{nestedPost.content}</p>
           ))}
           </li>
         ))}
@@ -160,7 +171,7 @@ const Blog = ({ posts, postsSelect, pagi }) => {
 
 Blog.getInitialProps = async ({ req,query }) => {
   // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
-  const page =1;
+  const page =query.page || 1;
   const tokenmd5="5b5ef644ff6a389fe63f3674295e2051";
 
   const host=process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://mukemmellblog.herokuapp.com";
@@ -176,6 +187,19 @@ Blog.getInitialProps = async ({ req,query }) => {
   const json = await res.json();
   const jsonSelect = await resSelect.json();
   const pagiJson = await pagi.json();
+  const maxPagi=Math.ceil(pagiJson.posts[0]["COUNT(*)"]/9);
+
+  pagiJson.posts.map(post =>{
+    post.pre=(page-1) > 0 ? parseInt(page)-1 : 0
+    post.next=page == maxPagi ? 0: (parseInt(page)+1)
+    return post
+  });
+
+  if(page < 1 || page > maxPagi)
+    return { posts: json.posts ,postsSelect:jsonSelect.posts, pagi:pagiJson.posts , error:'Bu sayfa Bulunamadı!' }
+
+
+
   loop=0;
   jsonSelect.posts.map(add => {
     add.key = `blog-content-${loop}`;
@@ -187,7 +211,7 @@ Blog.getInitialProps = async ({ req,query }) => {
     return add;
   })
 
-  return { posts: json.posts ,postsSelect:jsonSelect.posts, pagi:pagiJson.posts};
+  return { posts: json.posts ,postsSelect:jsonSelect.posts, pagi:pagiJson.posts, error:'none'};
 
 };
 
