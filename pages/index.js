@@ -2,20 +2,23 @@ import React from "react";
 import fetch from "isomorphic-unfetch";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-import Layout from "../components/layout";
-import Head from "../components/head";
+
+import Head from "../components/head";import Layout from "../components/layout";
 import MYApp from "../components/globe";
-
-
 
 
 const Home = ({ posts }) => (
   <Layout>
-  <Head/>
   <MYApp/>
+  <Head/>
   <style jsx global>{`
     .container {
       padding:0!important;
+    }
+    .fixed {
+      position:fixed;
+      bottom:20px;
+      margin-top:-92px
     }
     @media screen and (max-width:1000px){
       #__next,.container {
@@ -28,6 +31,10 @@ const Home = ({ posts }) => (
         justify-content:center;
         align-items:center;
         display:flex;
+        padding:0
+      }
+      .forward p a {
+        margin-top:0!important;
       }
       p {
         padding:30px;
@@ -43,6 +50,7 @@ const Home = ({ posts }) => (
         width:100%;
         text-align:center;
         justify-content:center
+
       }
       .phone,.email,.social{
         width:100%;
@@ -56,28 +64,28 @@ const Home = ({ posts }) => (
 
     `}</style>
   <script src="static/js/three.r92.min.js"></script>
-  <div className="forward">
+  <div className="forward col-md-12">
     <p id="promotion" >
       <font style={{ color: "#FF3D17" }} >Merhaba;</font> Ben Fatih
       <br/>
       <Link href="/blog" >
-          <a className="hvr-bounce-to-right" >Bloğa ilerle</a>
+          <a style={{marginTop:"-100px"}} className="hvr-bounce-to-right" >Bloğa ilerle</a>
       </Link>
     </p>
 
   </div>
-  <div className="fixed"  >
-    <div className="phone" >
+  <div className="fixed col-md-12"  >
+    <div className="phone col-md-4" >
       <Link>
         <a>+90 544 473 5349</a>
       </Link>
     </div>
-    <div className="email" >
+    <div className="email col-md-4" >
       <Link href="//mailto:fatiiates@gmail.com" >
         <a>fatiiates@gmail.com </a>
       </Link>
     </div>
-    <div className="social" >
+    <div className="social col-md-4" >
       <ul className="social-icons">
           <li><a target="_blank" href="https://www.linkedin.com/in/fatiiates/" className="social-icon"> <i className="fab fa-linkedin"></i></a></li>
           <li><a target="_blank" href="https://www.twitter.com/fatiiates" className="social-icon"> <i className="fab fa-twitter"></i></a></li>
