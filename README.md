@@ -1,6 +1,9 @@
 ## <a name="aciklama"></a> AÇIKLAMA
 
-&emsp;&emsp;Yarışmaya final sınavlarımdan dolayı bir ay gecikmeli başladım fakat bir ay içinde bir çok özellik ekledim Next JS'in birçok işlevini kavradım yarışmayı düzenlendiğiniz için teşekkürler, yarışmacı arkadaşlara başarılarr
+&emsp;&emsp;Next.js ile sıfırdan bir blog geliştirme yarışması için hazırladığım bir blog prototipi. 
+> Mysql sağlayıcısı: https://remotemysql.com/
+> Domain sağlayıcısı: https://www.heroku.com/
+> Link:https://mukemmellblog.herokuapp.com/blog
 
 ## <a name="adminPanel" ></a> ADMİN PANELİ
 
