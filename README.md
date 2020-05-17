@@ -1,8 +1,8 @@
 ## <a name="aciklama"></a> AÇIKLAMA
 
 &emsp;&emsp;Next.js ile sıfırdan bir blog geliştirme yarışması için hazırladığım bir blog prototipi. 
-> Mysql sağlayıcısı: https://remotemysql.com/
-> Domain sağlayıcısı: https://www.heroku.com/
+> Mysql sağlayıcısı: https://remotemysql.com/  
+> Domain sağlayıcısı: https://www.heroku.com/  
 > Link:https://mukemmellblog.herokuapp.com/blog
 
 ## <a name="adminPanel" ></a> ADMİN PANELİ
