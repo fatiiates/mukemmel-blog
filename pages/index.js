@@ -12,6 +12,9 @@ const Home = ({ posts }) => (
   <MYApp/>
   <Head/>
   <style jsx global>{`
+    #__next: {
+    height: 100%; 
+    },
     .container {
       padding:0!important;
     }
