@@ -109,16 +109,16 @@ const About = ({ posts }) => (
           &emsp;&emsp;Merhaba, Ben Fatih
           <br/>
           2000 yılında Bursa'da doğdum,
-          19 seneden beri Bursa'da yaşıyorum. Bursa Teknik Üniversitesi'nde Bilgisayar Mühendisliği bölümü
-          2. sınıf öğrencisiyim. Lise öğrenimimi Tophane Mesleki ve Teknik Anadolu Lisesi'nde gördüm.
-          Bir süredir Google DSC* Core ekibinde görev alıyorum. Boş zamanlarımda daha çok web sitesi geliştirme ve
-          C# üzerinde çeşitli ajans, ofis yazılımları üzerinde çalışıyorum. Benimle ilgili daha çok bilgi edinmek
+          20 senedir Bursa'da yaşıyorum. Bursa Teknik Üniversitesi'nde Bilgisayar Mühendisliği bölümü
+          3. sınıf öğrencisiyim. Lise öğrenimimi Tophane Mesleki ve Teknik Anadolu Lisesi'nde gördüm.
+          Şu an python ile çeşitli küçük scriptler yazıyorum ve aynı zamanda Nodejs tarafında TypeScript ile farklı
+          projeler geliştiriyorum.
+          Boş zamanlarımı daha çok makale okuma, bisiklet sürme gibi aktiviteler ile değerlendiriyorum.
+          Benimle ilgili daha çok bilgi edinmek
           istersen beni sosyal medya hesaplarımdan takip edebilirsin!
           <br/>
           <span style={{float:"right"}}>Hoşça kal!</span>
           </p>
-          <br/><br/><br/>
-          <p className="description" >*Developer Students Clubs(Geliştiri Öğrenci Kulüpleri)</p>
         </div>
       </div>
 

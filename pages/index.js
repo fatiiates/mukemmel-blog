@@ -12,16 +12,17 @@ const Home = ({ posts }) => (
   <MYApp/>
   <Head/>
   <style jsx global>{`
-    #__next: {
-    height: 100%; 
-    },
+    #__next {
+    height: 100%;
+    }
     .container {
       padding:0!important;
+      background: red;
     }
     .fixed {
       position:fixed;
       bottom:20px;
-      margin-top:-92px
+      margin-top:-92px;
     }
     @media screen and (max-width:1000px){
       #__next,.container {
@@ -68,7 +69,7 @@ const Home = ({ posts }) => (
   <script src="static/js/three.r92.min.js"></script>
   <div className="forward col-md-12">
     <p id="promotion" >
-      <font style={{ color: "#FF3D17" }} >Merhaba;</font> Ben Fatih
+      <font style={{ color: "#FF3D17" }} >Merhaba,</font> Ben Fatih
       <br/>
       <Link href={process.env.NODE_ENV === "development" ? "//localhost:3000/blog":"//mukemmellblog.herokuapp.com/blog"} >
           <a style={{marginTop:"-100px"}} className="hvr-bounce-to-right" >Bloğa ilerle</a>
@@ -78,7 +79,7 @@ const Home = ({ posts }) => (
   </div>
   <div className="fixed col-md-12"  >
     <div className="phone col-md-4" >
-      <Link>
+      <Link href="//tel:+905444735349">
         <a>+90 544 473 5349</a>
       </Link>
     </div>
